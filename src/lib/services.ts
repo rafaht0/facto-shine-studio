@@ -39,8 +39,8 @@ export const services: Service[] = [
     slug: "gerenciamento-de-midias",
     name: "Gerenciamento de Mídias",
     short: "Presença digital consistente, com pauta, arte e resultado.",
-    color: "var(--brand-pink)",
-    shape: "blob",
+    color: "var(--brand-blue)",
+    shape: "sparkle",
     intro:
       "Cuidamos das redes sociais da sua marca de ponta a ponta: planejamento de conteúdo, produção de artes e legendas, publicação e leitura de métricas. Presença constante, com propósito e não por acaso.",
     deliverables: [
@@ -63,8 +63,8 @@ export const services: Service[] = [
     slug: "manual-de-identidade-visual",
     name: "Manual de Identidade Visual",
     short: "Todas as regras da sua marca reunidas em um só documento.",
-    color: "var(--brand-magenta)",
-    shape: "burst",
+    color: "var(--brand-gray)",
+    shape: "star",
     intro:
       "O MIV é o guia definitivo da sua marca: logo, cores, tipografia, elementos gráficos e aplicações. Um documento que garante que a marca seja aplicada do mesmo jeito por qualquer pessoa, em qualquer lugar.",
     deliverables: [
@@ -111,8 +111,8 @@ export const services: Service[] = [
     slug: "consultoria-em-comunicacao",
     name: "Consultoria em Comunicação",
     short: "Um olhar externo, técnico e honesto sobre a sua comunicação.",
-    color: "var(--brand-orange)",
-    shape: "star",
+    color: "var(--brand-pink)",
+    shape: "flower",
     intro:
       "Analisamos como sua marca se comunica hoje e apontamos, com clareza, o que manter, o que ajustar e o que abandonar. Ideal para quem precisa de direção antes de investir.",
     deliverables: [
@@ -135,7 +135,7 @@ export const services: Service[] = [
     slug: "producao-de-website",
     name: "Produção de Website",
     short: "Sites rápidos, responsivos e com a cara da sua marca.",
-    color: "var(--brand-blue)",
+    color: "var(--brand-forest)",
     shape: "flower",
     intro:
       "Projetamos e desenvolvemos sites institucionais e landing pages pensados para conversão: arquitetura clara, design alinhado à identidade e performance em qualquer tela.",
@@ -159,8 +159,8 @@ export const services: Service[] = [
     slug: "trafego-pago",
     name: "Tráfego Pago",
     short: "Investimento em mídia com meta, acompanhamento e leitura de dados.",
-    color: "var(--brand-red)",
-    shape: "dot",
+    color: "var(--brand-orange)",
+    shape: "star",
     intro:
       "Planejamos, configuramos e otimizamos campanhas pagas para levar sua marca às pessoas certas. Cada real investido é acompanhado por dados e por relatórios que você entende.",
     deliverables: [
