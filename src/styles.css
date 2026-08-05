@@ -142,3 +142,63 @@
     transform: translateX(-50%);
   }
 }
+
+/* Ondas animadas — textura de fundo em movimento */
+@utility waves {
+  position: relative;
+  isolation: isolate;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 60%;
+    pointer-events: none;
+    z-index: -1;
+    background-repeat: repeat-x;
+    background-size: 50% 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 200' preserveAspectRatio='none'%3E%3Cpath d='M0 120 C 150 40 250 200 400 120 C 550 40 650 200 800 120 L800 200 L0 200Z' fill='%23ffffff' fill-opacity='0.35'/%3E%3C/svg%3E");
+    animation: facto-wave 18s linear infinite;
+  }
+  &::after {
+    height: 45%;
+    opacity: 0.6;
+    animation: facto-wave 26s linear infinite reverse;
+  }
+}
+
+@utility waves-soft {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    background-size: 60% 70%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 200' preserveAspectRatio='none'%3E%3Cpath d='M0 120 C 150 40 250 200 400 120 C 550 40 650 200 800 120 L800 200 L0 200Z' fill='%23083111' fill-opacity='0.06'/%3E%3C/svg%3E");
+    animation: facto-wave 32s linear infinite;
+  }
+}
+
+@keyframes facto-wave {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -800px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .waves::before,
+  .waves::after,
+  .waves-soft::before,
+  .marquee-track {
+    animation: none !important;
+  }
+}
