@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { services } from "@/lib/services";
 import { Shape } from "@/components/site/Shape";
+import { ElephantWalk } from "@/components/site/ElephantWalk";
 
 export const Route = createFileRoute("/servicos/")({
   head: () => ({
@@ -25,7 +26,8 @@ export const Route = createFileRoute("/servicos/")({
 function ServicosIndex() {
   return (
     <div>
-      <section className="waves grain relative overflow-hidden border-b-2 border-brand-forest bg-primary">
+      <section className="grain relative overflow-hidden border-b-2 border-brand-forest bg-primary">
+        <ElephantWalk className="forest-scene" accent="var(--brand-lime)" tone="var(--brand-forest)" />
         <div className="relative z-10 mx-auto max-w-6xl px-5 py-20">
           <p className="text-xs font-bold uppercase tracking-widest text-brand-lime">Serviços</p>
           <h1 className="headline mt-4 max-w-3xl text-5xl text-primary-foreground md:text-7xl">
@@ -34,8 +36,8 @@ function ServicosIndex() {
         </div>
       </section>
 
-      <section className="waves-soft">
-        <div className="mx-auto max-w-6xl px-5 py-16">
+      <section className="relative overflow-hidden">
+        <div className="relative z-10 mx-auto max-w-6xl px-5 py-16">
           <div className="grid gap-5 sm:grid-cols-2">
             {services.map((s) => (
               <Link
