@@ -31,54 +31,71 @@ function ServicoDetalhe() {
   const service = getService(slug)!;
   const others = services.filter((s) => s.slug !== service.slug).slice(0, 3);
 
+  const tint = (pct: number) => `color-mix(in oklab, ${service.color} ${pct}%, var(--background))`;
+
   return (
     <div>
-      <section className="border-b border-border bg-muted/40">
-        <div className="mx-auto max-w-6xl px-5 py-16">
-          <Link to="/servicos" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary">
+      <section
+        className="waves grain relative overflow-hidden border-b-2 border-brand-forest"
+        style={{ backgroundColor: tint(85) }}
+      >
+        <div className="relative z-10 mx-auto max-w-6xl px-5 py-20">
+          <Link
+            to="/servicos"
+            className="inline-flex items-center gap-2 rounded-full bg-brand-forest px-4 py-2 text-xs font-bold uppercase tracking-widest text-primary-foreground"
+          >
             <ArrowLeft className="size-4" /> Todos os serviços
           </Link>
           <div className="mt-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <h1 className="headline max-w-3xl text-5xl text-brand-forest md:text-6xl">{service.name}</h1>
-            <Shape kind={service.shape} color={service.color} className="w-16 shrink-0" />
+            <h1 className="headline max-w-3xl text-5xl text-brand-forest md:text-7xl">{service.name}</h1>
+            <Shape kind={service.shape} color="var(--brand-forest)" className="w-20 shrink-0 animate-[spin_18s_linear_infinite]" />
           </div>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">{service.intro}</p>
+          <p className="mt-6 max-w-2xl text-lg font-medium leading-relaxed text-brand-forest/85">{service.intro}</p>
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-6xl gap-14 px-5 py-20 md:grid-cols-2">
-        <div>
-          <h2 className="text-xs font-bold uppercase tracking-widest text-primary">O que está incluso</h2>
-          <ul className="mt-6 space-y-3">
-            {service.deliverables.map((d) => (
-              <li key={d} className="flex items-start gap-3">
-                <Check className="mt-0.5 size-5 shrink-0 text-primary" />
-                <span className="text-muted-foreground">{d}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="rounded-lg border-2 border-brand-forest p-8">
-          <h2 className="text-xs font-bold uppercase tracking-widest text-primary">Para quem é</h2>
-          <p className="mt-4 text-lg leading-relaxed text-brand-forest">{service.forWho}</p>
-          <Link
-            to="/diagnostico"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-bold uppercase tracking-wide text-primary-foreground transition-colors hover:bg-brand-forest"
-          >
-            Quero este serviço <ArrowRight className="size-4" />
-          </Link>
+      <section className="waves-soft">
+        <div className="mx-auto grid max-w-6xl gap-14 px-5 py-20 md:grid-cols-2">
+          <div className="rounded-lg border-2 border-brand-forest p-8" style={{ backgroundColor: tint(18) }}>
+            <h2 className="text-xs font-bold uppercase tracking-widest text-brand-forest">O que está incluso</h2>
+            <ul className="mt-6 space-y-3">
+              {service.deliverables.map((d) => (
+                <li key={d} className="flex items-start gap-3">
+                  <Check className="mt-0.5 size-5 shrink-0 text-brand-forest" />
+                  <span className="text-brand-forest/80">{d}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="grain relative overflow-hidden rounded-lg bg-brand-forest p-8">
+            <Shape
+              kind={service.shape}
+              color={service.color}
+              className="pointer-events-none absolute -right-8 -top-8 w-40 opacity-30"
+            />
+            <h2 className="relative z-10 text-xs font-bold uppercase tracking-widest text-brand-lime">Para quem é</h2>
+            <p className="relative z-10 mt-4 text-lg leading-relaxed text-primary-foreground">{service.forWho}</p>
+            <Link
+              to="/diagnostico"
+              className="relative z-10 mt-8 inline-flex items-center gap-2 rounded-full bg-brand-lime px-6 py-3 text-sm font-bold uppercase tracking-wide text-brand-forest transition-transform hover:scale-105"
+            >
+              Quero este serviço <ArrowRight className="size-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
-      <section className="border-y border-border bg-muted/40">
-        <div className="mx-auto max-w-6xl px-5 py-20">
-          <h2 className="headline text-4xl text-brand-forest md:text-5xl">Como funciona</h2>
+      <section className="waves grain relative overflow-hidden border-y-2 border-brand-forest bg-brand-forest">
+        <div className="relative z-10 mx-auto max-w-6xl px-5 py-20">
+          <h2 className="headline text-4xl text-brand-lime md:text-5xl">Como funciona</h2>
           <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {service.steps.map((step, i) => (
-              <li key={step.title} className="border-t-2 border-brand-forest pt-6">
-                <span className="text-4xl font-extrabold text-primary">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="mt-3 text-lg font-extrabold uppercase text-brand-forest">{step.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.text}</p>
+              <li key={step.title} className="border-t-2 pt-6" style={{ borderColor: service.color }}>
+                <span className="text-4xl font-extrabold" style={{ color: service.color }}>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-3 text-lg font-extrabold uppercase text-primary-foreground">{step.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-primary-foreground/70">{step.text}</p>
               </li>
             ))}
           </ol>
@@ -87,18 +104,17 @@ function ServicoDetalhe() {
 
       <section className="mx-auto max-w-6xl px-5 py-20">
         <h2 className="text-xs font-bold uppercase tracking-widest text-primary">Outros serviços</h2>
-        <div className="mt-8 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-3">
+        <div className="mt-8 grid gap-4 sm:grid-cols-3">
           {others.map((s) => (
             <Link
               key={s.slug}
               to="/servicos/$slug"
               params={{ slug: s.slug }}
-              className="group flex items-start justify-between gap-4 bg-background p-7 transition-colors hover:bg-brand-forest"
+              className="group flex items-start justify-between gap-4 rounded-lg border-2 border-brand-forest p-7 transition-transform hover:-translate-y-1"
+              style={{ backgroundColor: `color-mix(in oklab, ${s.color} 22%, var(--background))` }}
             >
-              <h3 className="max-w-[14ch] text-lg font-extrabold uppercase leading-tight text-brand-forest group-hover:text-primary-foreground">
-                {s.name}
-              </h3>
-              <Shape kind={s.shape} color={s.color} className="w-6 shrink-0" />
+              <h3 className="max-w-[14ch] text-lg font-extrabold uppercase leading-tight text-brand-forest">{s.name}</h3>
+              <Shape kind={s.shape} color="var(--brand-forest)" className="w-6 shrink-0 transition-transform group-hover:rotate-90" />
             </Link>
           ))}
         </div>
