@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { getService, services } from "@/lib/services";
 import { Shape } from "@/components/site/Shape";
+import { ElephantWalk } from "@/components/site/ElephantWalk";
 
 export const Route = createFileRoute("/servicos/$slug")({
   loader: ({ params }) => {
@@ -36,9 +37,10 @@ function ServicoDetalhe() {
   return (
     <div>
       <section
-        className="waves grain relative overflow-hidden border-b-2 border-brand-forest"
+        className="grain relative overflow-hidden border-b-2 border-brand-forest"
         style={{ backgroundColor: tint(85) }}
       >
+        <ElephantWalk className="forest-scene" accent={service.color} tone="var(--brand-forest)" />
         <div className="relative z-10 mx-auto max-w-6xl px-5 py-20">
           <Link
             to="/servicos"
@@ -54,8 +56,8 @@ function ServicoDetalhe() {
         </div>
       </section>
 
-      <section className="waves-soft">
-        <div className="mx-auto grid max-w-6xl gap-14 px-5 py-20 md:grid-cols-2">
+      <section className="relative overflow-hidden">
+        <div className="relative z-10 mx-auto grid max-w-6xl gap-14 px-5 py-20 md:grid-cols-2">
           <div className="rounded-lg border-2 border-brand-forest p-8" style={{ backgroundColor: tint(18) }}>
             <h2 className="text-xs font-bold uppercase tracking-widest text-brand-forest">O que está incluso</h2>
             <ul className="mt-6 space-y-3">
@@ -85,7 +87,8 @@ function ServicoDetalhe() {
         </div>
       </section>
 
-      <section className="waves grain relative overflow-hidden border-y-2 border-brand-forest bg-brand-forest">
+      <section className="grain relative overflow-hidden border-y-2 border-brand-forest bg-brand-forest">
+        <ElephantWalk className="forest-scene" accent="var(--brand-lime)" tone="var(--brand-lime)" />
         <div className="relative z-10 mx-auto max-w-6xl px-5 py-20">
           <h2 className="headline text-4xl text-brand-lime md:text-5xl">Como funciona</h2>
           <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
