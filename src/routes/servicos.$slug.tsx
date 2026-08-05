@@ -5,15 +5,14 @@ import { Shape } from "@/components/site/Shape";
 
 export const Route = createFileRoute("/servicos/$slug")({
   loader: ({ params }) => {
-    const service = getService(params.slug);
-    if (!service) throw notFound();
-    return { service };
+    if (!getService(params.slug)) throw notFound();
+    return null;
   },
-  head: ({ loaderData }) => {
-    if (!loaderData) {
+  head: ({ params }) => {
+    const service = getService(params.slug);
+    if (!service) {
       return { meta: [{ title: "Serviço não encontrado — Facto" }, { name: "robots", content: "noindex" }] };
     }
-    const { service } = loaderData;
     const title = `${service.name} — Facto Agência Júnior`;
     return {
       meta: [
@@ -28,7 +27,8 @@ export const Route = createFileRoute("/servicos/$slug")({
 });
 
 function ServicoDetalhe() {
-  const { service } = Route.useLoaderData();
+  const { slug } = Route.useParams();
+  const service = getService(slug)!;
   const others = services.filter((s) => s.slug !== service.slug).slice(0, 3);
 
   return (
