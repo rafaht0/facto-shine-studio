@@ -143,61 +143,107 @@
   }
 }
 
-/* Ondas animadas — textura de fundo em movimento */
-@utility waves {
-  position: relative;
-  isolation: isolate;
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0 0;
-    height: 60%;
-    pointer-events: none;
-    z-index: -1;
-    background-repeat: repeat-x;
-    background-size: 50% 100%;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 200' preserveAspectRatio='none'%3E%3Cpath d='M0 120 C 150 40 250 200 400 120 C 550 40 650 200 800 120 L800 200 L0 200Z' fill='%23ffffff' fill-opacity='0.35'/%3E%3C/svg%3E");
-    animation: facto-wave 18s linear infinite;
-  }
-  &::after {
-    height: 45%;
-    opacity: 0.6;
-    animation: facto-wave 26s linear infinite reverse;
-  }
+/* Cena do elefantinho na floresta */
+@utility forest-scene {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 190px;
+  width: 100%;
+  pointer-events: none;
+  z-index: 0;
 }
 
-@utility waves-soft {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background-repeat: repeat-x;
-    background-position: center bottom;
-    background-size: 60% 70%;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 200' preserveAspectRatio='none'%3E%3Cpath d='M0 120 C 150 40 250 200 400 120 C 550 40 650 200 800 120 L800 200 L0 200Z' fill='%23083111' fill-opacity='0.06'/%3E%3C/svg%3E");
-    animation: facto-wave 32s linear infinite;
-  }
+.forest-far {
+  animation: facto-forest 34s linear infinite;
 }
 
-@keyframes facto-wave {
+.forest-near {
+  animation: facto-forest 18s linear infinite;
+}
+
+.elephant-walk {
+  animation: facto-bob 0.7s ease-in-out infinite alternate;
+  transform-box: fill-box;
+}
+
+.elephant-walk .leg-a {
+  animation: facto-step 0.7s ease-in-out infinite alternate;
+  transform-origin: top center;
+  transform-box: fill-box;
+}
+
+.elephant-walk .leg-b {
+  animation: facto-step 0.7s ease-in-out infinite alternate-reverse;
+  transform-origin: top center;
+  transform-box: fill-box;
+}
+
+.elephant-walk .trunk {
+  animation: facto-trunk 2.4s ease-in-out infinite;
+  transform-origin: 90% 0%;
+  transform-box: fill-box;
+}
+
+.elephant-walk .ear {
+  animation: facto-ear 1.4s ease-in-out infinite alternate;
+  transform-origin: 60% 20%;
+  transform-box: fill-box;
+}
+
+@keyframes facto-forest {
   from {
-    background-position-x: 0;
+    transform: translateX(0);
   }
   to {
-    background-position-x: -800px;
+    transform: translateX(-600px);
+  }
+}
+
+@keyframes facto-bob {
+  from {
+    transform: translate(560px, 192px);
+  }
+  to {
+    transform: translate(560px, 186px);
+  }
+}
+
+@keyframes facto-step {
+  from {
+    transform: rotate(-11deg);
+  }
+  to {
+    transform: rotate(11deg);
+  }
+}
+
+@keyframes facto-trunk {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-12deg);
+  }
+}
+
+@keyframes facto-ear {
+  from {
+    transform: rotate(-6deg);
+  }
+  to {
+    transform: rotate(9deg);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .waves::before,
-  .waves::after,
-  .waves-soft::before,
+  .forest-far,
+  .forest-near,
+  .elephant-walk,
+  .elephant-walk .leg-a,
+  .elephant-walk .leg-b,
+  .elephant-walk .trunk,
+  .elephant-walk .ear,
   .marquee-track {
     animation: none !important;
   }
