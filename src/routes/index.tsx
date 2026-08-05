@@ -32,10 +32,10 @@ function Home() {
               <span className="size-2 rounded-full bg-brand-lime" />
               Mais de uma década de história
             </p>
-            <h1 className="headline text-5xl text-brand-forest sm:text-6xl md:text-7xl">
-              Comunicação que
+            <h1 className="headline text-5xl uppercase text-brand-forest sm:text-6xl md:text-7xl">
+              Comunicação é com
               <br />
-              <span className="text-primary">não estagna.</span>
+              <span className="text-primary">A maior manada da nação.</span>
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground">
               A Facto é uma agência júnior de comunicação. Inovar a comunicação do mercado é essencial — porque estagnar
