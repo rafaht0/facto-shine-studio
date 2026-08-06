@@ -1,0 +1,272 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Facto — Agência Júnior de Comunicação
+ * Design system derived from the official brand manual.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  /* Brand palette */
+  --color-brand-green: var(--brand-green);
+  --color-brand-forest: var(--brand-forest);
+  --color-brand-red: var(--brand-red);
+  --color-brand-magenta: var(--brand-magenta);
+  --color-brand-pink: var(--brand-pink);
+  --color-brand-amber: var(--brand-amber);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-lime: var(--brand-lime);
+  --color-brand-gray: var(--brand-gray);
+
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.25rem;
+
+  --brand-green: oklch(0.5 0.129 156.5);
+  --brand-forest: oklch(0.24 0.058 155);
+  --brand-red: oklch(0.575 0.246 28.5);
+  --brand-magenta: oklch(0.46 0.176 348);
+  --brand-pink: oklch(0.635 0.244 5.5);
+  --brand-amber: oklch(0.815 0.155 79);
+  --brand-orange: oklch(0.68 0.21 43);
+  --brand-blue: oklch(0.47 0.13 246);
+  --brand-lime: oklch(0.9 0.223 118);
+  --brand-gray: oklch(0.53 0.007 17);
+
+  --background: oklch(1 0 0);
+  --foreground: var(--brand-forest);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--brand-forest);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--brand-forest);
+  --primary: var(--brand-green);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.965 0.012 155);
+  --secondary-foreground: var(--brand-forest);
+  --muted: oklch(0.966 0.004 155);
+  --muted-foreground: var(--brand-gray);
+  --accent: oklch(0.955 0.02 155);
+  --accent-foreground: var(--brand-forest);
+  --destructive: var(--brand-red);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9 0.008 155);
+  --input: oklch(0.88 0.008 155);
+  --ring: var(--brand-green);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility headline {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+@utility grain {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.18;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+@utility marquee-track {
+  display: inline-flex;
+  animation: facto-marquee 28s linear infinite;
+}
+
+@keyframes facto-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Ícones da hero flutuando livremente */
+@utility floating-shape {
+  animation: facto-float var(--float-duration, 6s) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+@keyframes facto-float {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(var(--float-x, 10px), var(--float-y, -18px)) rotate(var(--float-rot, 6deg));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-shape {
+    animation: none !important;
+  }
+}
+
+/* Cena do elefantinho na floresta */
+@utility forest-scene {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 190px;
+  width: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.forest-far {
+  animation: facto-forest 34s linear infinite;
+}
+
+.forest-near {
+  animation: facto-forest 18s linear infinite;
+}
+
+.elephant-walk {
+  animation: facto-bob 0.7s ease-in-out infinite alternate;
+  transform-box: fill-box;
+}
+
+.elephant-walk .leg-a {
+  animation: facto-step 0.7s ease-in-out infinite alternate;
+  transform-origin: top center;
+  transform-box: fill-box;
+}
+
+.elephant-walk .leg-b {
+  animation: facto-step 0.7s ease-in-out infinite alternate-reverse;
+  transform-origin: top center;
+  transform-box: fill-box;
+}
+
+.elephant-walk .trunk {
+  animation: facto-trunk 2.4s ease-in-out infinite;
+  transform-origin: 90% 0%;
+  transform-box: fill-box;
+}
+
+.elephant-walk .ear {
+  animation: facto-ear 1.4s ease-in-out infinite alternate;
+  transform-origin: 60% 20%;
+  transform-box: fill-box;
+}
+
+@keyframes facto-forest {
+  from {
+    transform: translateX(-600px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes facto-bob {
+  from {
+    transform: translate(560px, 192px);
+  }
+  to {
+    transform: translate(560px, 186px);
+  }
+}
+
+@keyframes facto-step {
+  from {
+    transform: rotate(-11deg);
+  }
+  to {
+    transform: rotate(11deg);
+  }
+}
+
+@keyframes facto-trunk {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-12deg);
+  }
+}
+
+@keyframes facto-ear {
+  from {
+    transform: rotate(-6deg);
+  }
+  to {
+    transform: rotate(9deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .forest-far,
+  .forest-near,
+  .elephant-walk,
+  .elephant-walk .leg-a,
+  .elephant-walk .leg-b,
+  .elephant-walk .trunk,
+  .elephant-walk .ear,
+  .marquee-track {
+    animation: none !important;
+  }
+}
