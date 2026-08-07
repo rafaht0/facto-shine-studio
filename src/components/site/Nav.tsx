@@ -25,6 +25,9 @@ export function Nav() {
           <Link to="/servicos" activeProps={{ className: "text-primary" }} className={linkBase}>
             Serviços
           </Link>
+          <Link to="/projetos" activeProps={{ className: "text-primary" }} className={linkBase}>
+            Nossos Projetos
+          </Link>
           <Link
             to="/diagnostico"
             className="rounded-full bg-primary px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-primary-foreground transition-colors hover:bg-brand-forest"
@@ -54,6 +57,9 @@ export function Nav() {
             </Link>
             <Link to="/servicos" onClick={() => setOpen(false)} className={linkBase}>
               Serviços
+            </Link>
+            <Link to="/projetos" onClick={() => setOpen(false)} className={linkBase}>
+              Nossos Projetos
             </Link>
             <div className="flex flex-col gap-2 border-l-2 border-border pl-4">
               {services.map((s) => (

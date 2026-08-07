@@ -84,6 +84,30 @@ export const services: Service[] = [
     forWho: "Marcas que já têm um logotipo, mas não têm padrão — e cada peça sai com uma cara diferente.",
   },
   {
+    slug: "arte-grafica",
+    name: "Arte Gráfica",
+    short: "Peças visuais para todos os pontos de contato da sua marca.",
+    color: "var(--brand-forest)",
+    shape: "burst",
+    intro:
+      "Criamos as artes que colocam sua marca em movimento no dia a dia: do digital ao impresso. Cada peça nasce alinhada à identidade visual, com hierarquia clara e acabamento profissional — sem depender de retrabalho ou improviso.",
+    deliverables: [
+      "Peças para redes sociais e campanhas",
+      "Materiais impressos: cartões, folders e banners",
+      "Apresentações institucionais e comerciais",
+      "Templates editáveis para uso interno",
+      "Adaptação de peças para múltiplos formatos",
+      "Arquivos finais organizados e prontos para produção",
+    ],
+    steps: [
+      { title: "Briefing", text: "Levantamento do objetivo da peça, público e prazo de entrega." },
+      { title: "Direção", text: "Definição do conceito visual dentro da identidade da marca." },
+      { title: "Produção", text: "Criação, ajustes e aprovação das artes com o cliente." },
+      { title: "Entrega", text: "Exportação nos formatos certos e arquivos organizados para uso." },
+    ],
+    forWho: "Marcas que precisam de peças gráficas constantes e com qualidade, sem depender de um designer interno para cada demanda.",
+  },
+  {
     slug: "plano-de-comunicacao",
     name: "Plano de Comunicação",
     short: "Um mapa claro do que falar, onde falar e para quem.",

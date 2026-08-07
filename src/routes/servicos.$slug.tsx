@@ -40,7 +40,7 @@ function ServicoDetalhe() {
         className="grain relative overflow-hidden border-b-2 border-brand-forest"
         style={{ backgroundColor: tint(85) }}
       >
-        <ElephantWalk className="forest-scene" accent={service.color} tone="var(--brand-forest)" />
+        <ElephantWalk className="forest-scene" accent={service.color} tone="var(--brand-forest)" bg={tint(85)} />
         <div className="relative z-10 mx-auto max-w-6xl px-5 py-20">
           <Link
             to="/servicos"
@@ -88,7 +88,7 @@ function ServicoDetalhe() {
       </section>
 
       <section className="grain relative overflow-hidden border-y-2 border-brand-forest bg-brand-forest">
-        <ElephantWalk className="forest-scene" accent="var(--brand-lime)" tone="var(--brand-lime)" />
+        <ElephantWalk className="forest-scene" accent="var(--brand-lime)" tone="var(--brand-lime)" bg="var(--brand-forest)" />
         <div className="relative z-10 mx-auto max-w-6xl px-5 py-20">
           <h2 className="headline text-4xl text-brand-lime md:text-5xl">Como funciona</h2>
           <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">

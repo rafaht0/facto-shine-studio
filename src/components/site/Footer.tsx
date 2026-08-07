@@ -45,6 +45,11 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link to="/projetos" className="text-sm text-primary-foreground/75 hover:text-brand-lime">
+                Nossos Projetos
+              </Link>
+            </li>
+            <li>
               <Link to="/diagnostico" className="text-sm text-primary-foreground/75 hover:text-brand-lime">
                 Solicitar diagnóstico
               </Link>

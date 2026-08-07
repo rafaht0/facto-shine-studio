@@ -143,6 +143,50 @@
   }
 }
 
+/* Ícones da hero flutuando livremente */
+@utility floating-shape {
+  animation: facto-float var(--float-duration, 6s) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+@keyframes facto-float {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(var(--float-x, 10px), var(--float-y, -18px)) rotate(var(--float-rot, 6deg));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-shape {
+    animation: none !important;
+  }
+}
+
+/* Balanço bem sutil, tipo um elefante em pé cochilando */
+@utility gentle-sway {
+  animation: facto-gentle-sway 4.5s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+@keyframes facto-gentle-sway {
+  0%,
+  100% {
+    transform: rotate(-1.5deg);
+  }
+  50% {
+    transform: rotate(1.5deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gentle-sway {
+    animation: none !important;
+  }
+}
+
 /* Cena do elefantinho na floresta */
 @utility forest-scene {
   position: absolute;
@@ -192,10 +236,10 @@
 
 @keyframes facto-forest {
   from {
-    transform: translateX(0);
+    transform: translateX(-600px);
   }
   to {
-    transform: translateX(-600px);
+    transform: translateX(0);
   }
 }
 

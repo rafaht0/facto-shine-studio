@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DiagnosticoRouteImport } from './routes/diagnostico'
+import { Route as ProjetosRouteImport } from './routes/projetos'
 import { Route as ServicosRouteImport } from './routes/servicos'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as ServicosIndexRouteImport } from './routes/servicos.index'
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const DiagnosticoRoute = DiagnosticoRouteImport.update({
   id: '/diagnostico',
   path: '/diagnostico',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjetosRoute = ProjetosRouteImport.update({
+  id: '/projetos',
+  path: '/projetos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicosRoute = ServicosRouteImport.update({
@@ -50,6 +56,7 @@ const ServicosSlugRoute = ServicosSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/diagnostico': typeof DiagnosticoRoute
+  '/projetos': typeof ProjetosRoute
   '/servicos': typeof ServicosRouteWithChildren
   '/sobre': typeof SobreRoute
   '/servicos/$slug': typeof ServicosSlugRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/diagnostico': typeof DiagnosticoRoute
+  '/projetos': typeof ProjetosRoute
   '/sobre': typeof SobreRoute
   '/servicos/$slug': typeof ServicosSlugRoute
   '/servicos': typeof ServicosIndexRoute
@@ -66,6 +74,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/diagnostico': typeof DiagnosticoRoute
+  '/projetos': typeof ProjetosRoute
   '/servicos': typeof ServicosRouteWithChildren
   '/sobre': typeof SobreRoute
   '/servicos/$slug': typeof ServicosSlugRoute
@@ -76,16 +85,24 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/diagnostico'
+    | '/projetos'
     | '/servicos'
     | '/sobre'
     | '/servicos/$slug'
     | '/servicos/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/diagnostico' | '/sobre' | '/servicos/$slug' | '/servicos'
+  to:
+    | '/'
+    | '/diagnostico'
+    | '/projetos'
+    | '/sobre'
+    | '/servicos/$slug'
+    | '/servicos'
   id:
     | '__root__'
     | '/'
     | '/diagnostico'
+    | '/projetos'
     | '/servicos'
     | '/sobre'
     | '/servicos/$slug'
@@ -95,6 +112,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DiagnosticoRoute: typeof DiagnosticoRoute
+  ProjetosRoute: typeof ProjetosRoute
   ServicosRoute: typeof ServicosRouteWithChildren
   SobreRoute: typeof SobreRoute
 }
@@ -113,6 +131,13 @@ declare module '@tanstack/react-router' {
       path: '/diagnostico'
       fullPath: '/diagnostico'
       preLoaderRoute: typeof DiagnosticoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projetos': {
+      id: '/projetos'
+      path: '/projetos'
+      fullPath: '/projetos'
+      preLoaderRoute: typeof ProjetosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/servicos': {
@@ -163,6 +188,7 @@ const ServicosRouteWithChildren = ServicosRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DiagnosticoRoute: DiagnosticoRoute,
+  ProjetosRoute: ProjetosRoute,
   ServicosRoute: ServicosRouteWithChildren,
   SobreRoute: SobreRoute,
 }

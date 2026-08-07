@@ -1,4 +1,4 @@
-type ShapeKind = "star" | "burst" | "flower" | "hex" | "sparkle" | "blob" | "dot";
+export type ShapeKind = "star" | "burst" | "flower" | "hex" | "sparkle" | "blob" | "dot" | "spark";
 
 const paths: Record<ShapeKind, string> = {
   star: "M50 2 61 36 97 36 68 57 79 92 50 71 21 92 32 57 3 36 39 36Z",
@@ -11,6 +11,7 @@ const paths: Record<ShapeKind, string> = {
     "M50 0 57 30l22-19-13 25 30-6-26 15 26 15-30-6 13 25-22-19-7 30-7-30-22 19 13-25-30 6 26-15L2 30l30 6-13-25 22 19Z",
   blob: "M50 2c9 0 12 13 20 15s17-6 21 1-6 15-6 24 10 17 6 24-13-1-21 1-11 15-20 15-12-13-20-15-17 6-21-1 6-15 6-24-10-17-6-24 13 1 21-1 11-15 20-15Z",
   dot: "M50 2a48 48 0 110 96 48 48 0 010-96Z",
+  spark: "M50 0C54 32 68 46 100 50 68 54 54 68 50 100 46 68 32 54 0 50 32 46 46 32 50 0Z",
 };
 
 export function Shape({

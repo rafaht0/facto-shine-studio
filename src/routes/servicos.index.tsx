@@ -27,7 +27,7 @@ function ServicosIndex() {
   return (
     <div>
       <section className="grain relative overflow-hidden border-b-2 border-brand-forest bg-primary">
-        <ElephantWalk className="forest-scene" accent="var(--brand-lime)" tone="var(--brand-forest)" />
+        <ElephantWalk className="forest-scene" accent="var(--brand-lime)" tone="var(--brand-forest)" bg="var(--brand-green)" />
         <div className="relative z-10 mx-auto max-w-6xl px-5 py-20">
           <p className="text-xs font-bold uppercase tracking-widest text-brand-lime">Serviços</p>
           <h1 className="headline mt-4 max-w-3xl text-5xl text-primary-foreground md:text-7xl">
@@ -36,7 +36,7 @@ function ServicosIndex() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-visible">
         <div className="relative z-10 mx-auto max-w-6xl px-5 py-16">
           <div className="grid gap-5 sm:grid-cols-2">
             {services.map((s) => (

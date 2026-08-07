@@ -6,11 +6,14 @@ export function ElephantWalk({
   className = "",
   accent = "var(--brand-lime)",
   tone = "var(--brand-forest)",
+  bg = "var(--background)",
 }: {
   className?: string;
   accent?: string;
   tone?: string;
+  bg?: string;
 }) {
+  const earColor = `color-mix(in oklab, ${bg} 78%, black)`;
   const Tree = ({ x, s, kind }: { x: number; s: number; kind: 0 | 1 | 2 }) => (
     <g transform={`translate(${x} 200) scale(${s})`}>
       <rect x="-4" y="-42" width="8" height="42" fill={tone} opacity="0.85" />
@@ -40,23 +43,27 @@ export function ElephantWalk({
     >
       {/* camada distante */}
       <g className="forest-far" opacity="0.28">
-        {[0, 1].map((i) => (
+        {[0, 1, 2].map((i) => (
           <g key={i} transform={`translate(${i * 600} 0)`}>
-            <Tree x={60} s={0.7} kind={0} />
-            <Tree x={190} s={0.55} kind={2} />
-            <Tree x={330} s={0.75} kind={1} />
-            <Tree x={470} s={0.6} kind={0} />
+            <Tree x={20} s={0.5} kind={2} />
+            <Tree x={140} s={0.65} kind={0} />
+            <Tree x={260} s={0.7} kind={1} />
+            <Tree x={380} s={0.55} kind={2} />
+            <Tree x={490} s={0.6} kind={0} />
+            <Tree x={580} s={0.5} kind={1} />
           </g>
         ))}
       </g>
 
       {/* camada próxima */}
       <g className="forest-near" opacity="0.55">
-        {[0, 1].map((i) => (
+        {[0, 1, 2].map((i) => (
           <g key={i} transform={`translate(${i * 600} 0)`}>
             <Tree x={20} s={1} kind={1} />
-            <Tree x={240} s={1.15} kind={0} />
-            <Tree x={430} s={0.95} kind={2} />
+            <Tree x={140} s={0.9} kind={2} />
+            <Tree x={260} s={1.1} kind={0} />
+            <Tree x={380} s={0.85} kind={1} />
+            <Tree x={500} s={1} kind={2} />
           </g>
         ))}
       </g>
@@ -66,7 +73,7 @@ export function ElephantWalk({
 
       {/* moitas correndo no chão */}
       <g className="forest-near" opacity="0.7">
-        {[0, 1].map((i) => (
+        {[0, 1, 2].map((i) => (
           <g key={i} transform={`translate(${i * 600} 0)`}>
             <circle cx="120" cy="194" r="9" fill={accent} />
             <circle cx="360" cy="196" r="6" fill={accent} />
@@ -90,7 +97,9 @@ export function ElephantWalk({
           {/* cabeça */}
           <circle cx="-58" cy="-62" r="30" />
           {/* orelha */}
-          <ellipse className="ear" cx="-52" cy="-68" rx="18" ry="22" fill={accent} opacity="0.9" />
+          <g transform="translate(8 -2) rotate(90 -49 -79)">
+            <ellipse className="ear" fill={earColor} cx="-58" cy="-85" rx="32" ry="17" />
+          </g>
           {/* tromba */}
           <path
             className="trunk"
@@ -100,8 +109,6 @@ export function ElephantWalk({
             strokeLinecap="round"
             fill="none"
           />
-          {/* presa */}
-          <path d="M-76 -46 q-10 8 -4 16" stroke={accent} strokeWidth="5" strokeLinecap="round" fill="none" />
         </g>
         {/* olho */}
         <circle cx="-66" cy="-70" r="3.5" fill="var(--background)" />
