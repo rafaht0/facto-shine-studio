@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
-export function Logo({ tone = "red" }: { tone?: "red" | "light" }) {
+export function Logo({ tone = "green" }: { tone?: "green" | "light" }) {
   return (
     <Link to="/" className="group inline-flex items-baseline gap-0.5" aria-label="Facto — página inicial">
       <span

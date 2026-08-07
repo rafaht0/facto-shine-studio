@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Shape } from "@/components/site/Shape";
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, type CarouselApi } from "@/components/ui/carousel";
 
 export const Route = createFileRoute("/sobre")({
   head: () => ({
@@ -21,6 +23,15 @@ export const Route = createFileRoute("/sobre")({
   component: Sobre,
 });
 
+const memorias = [
+  { year: "2009", label: "Fundação da Facto", src: "/memorias/2009-fundacao.jpeg" },
+  { year: "2013", label: "Primeiro ENEJ", src: "/memorias/2013-enej.jpeg" },
+  { year: "2014", label: "Primeiro Sábado Júnior", src: "/memorias/2014.jpeg" },
+  { year: null, label: "Lei das EJs aprovada", src: "/memorias/2016.jpeg" },
+  { year: "2016", label: "Alto Crescimento", src: "/memorias/2016.jpeg" },
+  { year: "2025", label: "HEPTA Impacto", src: "/memorias/2025.jpeg" },
+];
+
 const valores = [
   { title: "bora bora", text: "Estagnar significa perder oportunidades. Buscamos novos caminhos a cada projeto.", shape: "sparkle" as const, color: "var(--brand-amber)" },
   { title: "profissionalismo", text: "Mudar é necessário e faz parte de qualquer adaptação — evoluímos junto do mercado.", shape: "burst" as const, color: "var(--brand-magenta)" },
@@ -29,6 +40,15 @@ const valores = [
 ];
 
 function Sobre() {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!api) return;
+    setCurrent(api.selectedScrollSnap());
+    api.on("select", () => setCurrent(api.selectedScrollSnap()));
+  }, [api]);
+
   return (
     <div>
       <section className="border-b border-border">
@@ -64,12 +84,46 @@ function Sobre() {
             </p>
           </div>
         </div>
-        <div className="grain relative min-h-64 overflow-hidden rounded-lg bg-primary">
-          <Shape kind="flower" color="var(--brand-lime)" className="absolute -bottom-10 -right-6 w-56 opacity-80" />
-          <Shape kind="sparkle" color="var(--brand-amber)" className="absolute left-8 top-8 w-16" />
-          <p className="absolute bottom-8 left-8 max-w-[18ch] text-2xl font-extrabold uppercase leading-tight text-primary-foreground">
-            Movidos por mudança
+        <div className="grain relative overflow-hidden rounded-lg bg-primary p-10">
+          <Shape kind="flower" color="var(--brand-lime)" className="pointer-events-none absolute -bottom-10 -right-6 w-56 opacity-30" />
+          <p className="relative z-10 mb-4 text-xl font-bold uppercase tracking-widest text-brand-lime">
+            Memórias que construíram
           </p>
+          <Carousel setApi={setApi} opts={{ loop: true }} className="relative z-10">
+            <CarouselContent>
+              {memorias.map((m) => (
+                <CarouselItem key={m.src}>
+                  <div className="aspect-[3/4] overflow-hidden rounded-md border border-primary-foreground/15">
+                    <img
+                      src={m.src}
+                      alt={m.label}
+                      className="h-full w-full scale-125 object-cover object-[center_75%]"
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-2 border-none bg-background/90 text-brand-forest hover:bg-background" />
+            <CarouselNext className="right-2 border-none bg-background/90 text-brand-forest hover:bg-background" />
+          </Carousel>
+
+          <div className="relative z-10 mt-4 flex flex-wrap items-center gap-2">
+            {memorias.map((m, i) => (
+              <button
+                key={m.src}
+                type="button"
+                onClick={() => api?.scrollTo(i)}
+                className={`rounded-full px-3 py-1.5 text-xs font-bold uppercase tracking-wide transition-colors ${
+                  i === current
+                    ? "bg-brand-lime text-brand-forest"
+                    : "bg-primary-foreground/10 text-primary-foreground/70 hover:bg-primary-foreground/20"
+                }`}
+              >
+                {m.year ?? m.label}
+              </button>
+            ))}
+          </div>
+          <p className="relative z-10 mt-2 text-sm text-primary-foreground/80">{memorias[current]?.label}</p>
         </div>
       </section>
 

@@ -165,6 +165,28 @@
   }
 }
 
+/* Balanço bem sutil, tipo um elefante em pé cochilando */
+@utility gentle-sway {
+  animation: facto-gentle-sway 4.5s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+@keyframes facto-gentle-sway {
+  0%,
+  100% {
+    transform: rotate(-1.5deg);
+  }
+  50% {
+    transform: rotate(1.5deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gentle-sway {
+    animation: none !important;
+  }
+}
+
 /* Cena do elefantinho na floresta */
 @utility forest-scene {
   position: absolute;

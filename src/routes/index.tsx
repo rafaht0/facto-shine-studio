@@ -189,37 +189,10 @@ function Home() {
         </div>
 </section>
 
-      <section className="relative overflow-hidden border-y border-border">
-        <svg
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-0 h-full w-full"
-          viewBox="0 0 1440 800"
-          preserveAspectRatio="none"
-        >
-          <rect width="1440" height="800" fill="var(--brand-forest)" />
-          <g className="wave-flow blur-2xl" style={{ "--wave-duration": "24s", "--wave-x": "-90px", "--wave-y": "20px" } as CSSProperties}>
-            <path
-              d="M-200,140 C120,40 320,240 640,140 C960,40 1160,240 1480,140 C1800,40 2000,240 2320,140 L2320,-100 L-200,-100 Z"
-              fill="var(--brand-green)"
-              opacity="0.55"
-            />
-          </g>
-          <g className="wave-flow blur-2xl" style={{ "--wave-duration": "31s", "--wave-x": "70px", "--wave-y": "-16px" } as CSSProperties}>
-            <path
-              d="M-200,360 C160,260 340,460 680,360 C1020,260 1180,460 1520,360 C1860,260 2020,460 2380,360 L2380,800 L-200,800 Z"
-              fill="color-mix(in oklab, var(--brand-green) 55%, var(--brand-forest))"
-              opacity="0.5"
-            />
-          </g>
-          <g className="wave-flow blur-3xl" style={{ "--wave-duration": "18s", "--wave-x": "-50px", "--wave-y": "-14px" } as CSSProperties}>
-            <path
-              d="M-200,560 C180,470 360,650 700,560 C1040,470 1220,650 1560,560 C1900,470 2080,650 2420,560 L2420,800 L-200,800 Z"
-              fill="var(--brand-blue)"
-              opacity="0.3"
-            />
-          </g>
-        </svg>
-
+      <section
+        className="grain relative overflow-hidden border-y border-border"
+        style={{ backgroundColor: "color-mix(in oklab, var(--brand-green) 65%, var(--brand-forest))" }}
+      >
         <div className="relative z-10 mx-auto max-w-6xl px-5 py-20">
           <h2 className="headline text-4xl text-white md:text-5xl">O que fazemos</h2>
           <div className="mt-12 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">

@@ -36,7 +36,7 @@ function ServicosIndex() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-visible">
         <div className="relative z-10 mx-auto max-w-6xl px-5 py-16">
           <div className="grid gap-5 sm:grid-cols-2">
             {services.map((s) => (
