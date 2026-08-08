@@ -1,9 +1,54 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { ArrowRight } from "lucide-react";
-import { Shape } from "@/components/site/Shape";
+import { Shape, type ShapeKind } from "@/components/site/Shape";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, type CarouselApi } from "@/components/ui/carousel";
-
+function FloatingIcon({
+  kind,
+  color,
+  top,
+  left,
+  size,
+  duration = 6,
+  delay = 0,
+  driftX = 10,
+  driftY = -18,
+  rotate = 8,
+}: {
+  kind: ShapeKind;
+  color: string;
+  top: string;
+  left: string;
+  size: string;
+  duration?: number;
+  delay?: number;
+  driftX?: number;
+  driftY?: number;
+  rotate?: number;
+}) {
+  return (
+    <div
+      className="floating-shape pointer-events-auto absolute"
+      style={
+        {
+          top,
+          left,
+          "--float-duration": `${duration}s`,
+          "--float-delay": `${delay}s`,
+          "--float-x": `${driftX}px`,
+          "--float-y": `${driftY}px`,
+          "--float-rot": `${rotate}deg`,
+        } as CSSProperties
+      }
+    >
+      <Shape
+        kind={kind}
+        color={color}
+        className={`${size} cursor-pointer transition-all duration-300 ease-out hover:scale-125 hover:-translate-y-3 hover:rotate-12`}
+      />
+    </div> 
+  );
+}
 export const Route = createFileRoute("/sobre")({
   head: () => ({
     meta: [
@@ -51,8 +96,19 @@ function Sobre() {
 
   return (
     <div>
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-5 py-20">
+      <section className="relative overflow-hidden border-b border-border">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden md:block">
+          <FloatingIcon kind="hex" color="var(--brand-green)" top="8%" left="72%" size="w-32" duration={7.5} delay={0.2} driftX={12} driftY={-20} rotate={6} />
+          <FloatingIcon kind="hex" color="var(--brand-green)" top="2%" left="31%" size="w-20" duration={5.5} delay={0.2} driftX={12} driftY={-20} rotate={6} />
+          <FloatingIcon kind="sparkle" color="var(--brand-amber)" top="12%" left="90%" size="w-14" duration={6.5} delay={1.4} driftX={-10} driftY={-16} rotate={12} />
+          <FloatingIcon kind="burst" color="var(--brand-magenta)" top="55%" left="85%" size="w-16" duration={8} delay={0.5} driftX={10} driftY={-18} rotate={-8} />
+          <FloatingIcon kind="burst" color="var(--brand-magenta)" top="55%" left="5%" size="w-16" duration={3} delay={0.5} driftX={10} driftY={-18} rotate={-8} />
+          <FloatingIcon kind="blob" color="var(--brand-pink)" top="70%" left="65%" size="w-20" duration={7} delay={0.3} driftX={-12} driftY={-16} rotate={-6} />
+          <FloatingIcon kind="star" color="var(--brand-orange)" top="10%" left="55%" size="w-14" duration={6} delay={0.9} driftX={10} driftY={-14} rotate={10} />
+          <FloatingIcon kind="dot" color="var(--brand-red)" top="88%" left="30%" size="w-12" duration={5.5} delay={0.8} driftX={-8} driftY={-14} rotate={-10} />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-6xl px-5 py-20">
           <p className="text-xs font-bold uppercase tracking-widest text-primary">Quem somos</p>
           <h1 className="headline mt-4 max-w-4xl text-5xl text-brand-forest md:text-6xl">
             Uma década inovando a comunicação do mercado

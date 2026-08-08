@@ -187,6 +187,35 @@
   }
 }
 
+/* Elefante idle: flutua e baloiça suavemente, como se estivesse respirando */
+@utility elephant-idle {
+  animation: facto-elephant-idle 6s ease-in-out infinite;
+  transform-origin: center bottom;
+  will-change: transform;
+}
+
+@keyframes facto-elephant-idle {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1.5deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1.5deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .elephant-idle {
+    animation: none !important;
+  }
+}
+
+/* Brilho no elefante ao passar o mouse — recortado à silhueta via mask */
+@utility elephant-shine {
+  background: radial-gradient(circle at 34% 30%, color-mix(in oklab, white 92%, transparent) 0%, transparent 42%);
+  opacity: 0;
+}
+
 /* Cena do elefantinho na floresta */
 @utility forest-scene {
   position: absolute;

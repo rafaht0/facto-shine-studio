@@ -123,12 +123,31 @@ function Projetos() {
   return (
     <div>
       <section className="relative overflow-hidden border-b border-border">
-        <img
-          src="/elefante-projetos.png"
-          alt=""
+        <div
           aria-hidden="true"
-          className="gentle-sway pointer-events-none absolute -top-2 right-4 hidden w-32 md:block md:right-8 md:w-44 lg:right-16 lg:w-56"
-        />
+          className="elephant-idle pointer-events-none absolute top-30 right-50 hidden w-36 md:block md:right-45 md:w-52 lg:right-70 lg:w-64"
+        >
+          <div className="group pointer-events-auto relative cursor-pointer">
+            <img
+              src="/elefantinho-nossos-projetos.png"
+              alt=""
+              className="block w-full origin-bottom drop-shadow-[0_18px_20px_rgba(15,45,33,0.28)] transition-all duration-500 ease-out group-hover:-translate-y-3 group-hover:scale-110 group-hover:rotate-3 group-hover:drop-shadow-[0_28px_26px_rgba(15,45,33,0.36)]"
+            />
+            <div
+              className="elephant-shine absolute inset-0 origin-bottom transition-all duration-500 ease-out group-hover:-translate-y-3 group-hover:scale-110 group-hover:rotate-3 group-hover:opacity-100"
+              style={{
+                WebkitMaskImage: "url(/elefantinho-nossos-projetos.png)",
+                maskImage: "url(/elefantinho-nossos-projetos.png)",
+                WebkitMaskSize: "contain",
+                maskSize: "contain",
+                WebkitMaskRepeat: "no-repeat",
+                maskRepeat: "no-repeat",
+                WebkitMaskPosition: "center",
+                maskPosition: "center",
+              }}
+            />
+          </div>
+        </div>
         <div className="mx-auto max-w-6xl px-5 py-20">
           <p className="text-xs font-bold uppercase tracking-widest text-primary">Nossos Projetos</p>
           <h1 className="headline mt-4 max-w-3xl text-5xl text-brand-forest md:text-6xl">
