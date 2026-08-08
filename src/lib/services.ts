@@ -18,7 +18,7 @@ export const services: Service[] = [
     color: "var(--brand-lime)",
     shape: "hex",
     intro:
-      "Construímos a base estratégica da sua marca: quem ela é, para quem fala e por que deveria ser lembrada. Do diagnóstico ao território verbal e visual, entregamos uma marca coerente em todos os pontos de contato.",
+      "",
     deliverables: [
       "Diagnóstico de marca e do mercado",
       "Propósito, missão, visão e valores",
@@ -42,7 +42,7 @@ export const services: Service[] = [
     color: "var(--brand-blue)",
     shape: "sparkle",
     intro:
-      "Cuidamos das redes sociais da sua marca de ponta a ponta: planejamento de conteúdo, produção de artes e legendas, publicação e leitura de métricas. Presença constante, com propósito e não por acaso.",
+      "",
     deliverables: [
       "Planejamento mensal de conteúdo",
       "Linha editorial e pilares de comunicação",
@@ -90,7 +90,7 @@ export const services: Service[] = [
     color: "var(--brand-forest)",
     shape: "burst",
     intro:
-      "Criamos as artes que colocam sua marca em movimento no dia a dia: do digital ao impresso. Cada peça nasce alinhada à identidade visual, com hierarquia clara e acabamento profissional — sem depender de retrabalho ou improviso.",
+      "",
     deliverables: [
       "Peças para redes sociais e campanhas",
       "Materiais impressos: cartões, folders e banners",
@@ -138,7 +138,7 @@ export const services: Service[] = [
     color: "var(--brand-pink)",
     shape: "flower",
     intro:
-      "Analisamos como sua marca se comunica hoje e apontamos, com clareza, o que manter, o que ajustar e o que abandonar. Ideal para quem precisa de direção antes de investir.",
+      "",
     deliverables: [
       "Auditoria dos canais e materiais atuais",
       "Benchmark de concorrentes",
@@ -162,7 +162,7 @@ export const services: Service[] = [
     color: "var(--brand-forest)",
     shape: "flower",
     intro:
-      "Projetamos e desenvolvemos sites institucionais e landing pages pensados para conversão: arquitetura clara, design alinhado à identidade e performance em qualquer tela.",
+      "",
     deliverables: [
       "Arquitetura de informação e wireframes",
       "Design de interface responsivo",

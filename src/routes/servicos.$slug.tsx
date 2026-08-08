@@ -49,7 +49,15 @@ function ServicoDetalhe() {
             <ArrowLeft className="size-4" /> Todos os serviços
           </Link>
           <div className="mt-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <h1 className="headline max-w-3xl text-5xl text-brand-forest md:text-7xl">{service.name}</h1>
+            <h1
+              className={`headline max-w-3xl text-5xl md:text-7xl ${
+                service.slug === "producao-de-website" || service.slug === "arte-grafica"
+                  ? "text-white"
+                  : "text-brand-forest"
+              }`}
+            >
+              {service.name}
+            </h1>
             <Shape kind={service.shape} color="var(--brand-forest)" className="w-20 shrink-0 animate-[spin_18s_linear_infinite]" />
           </div>
           <p className="mt-6 max-w-2xl text-lg font-medium leading-relaxed text-brand-forest/85">{service.intro}</p>
