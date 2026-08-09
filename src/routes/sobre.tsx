@@ -72,7 +72,7 @@ const memorias = [
   { year: "2009", label: "Fundação da Facto", src: "/memorias/2009-fundacao.jpeg" },
   { year: "2013", label: "Primeiro ENEJ", src: "/memorias/2013-enej.jpeg" },
   { year: "2014", label: "Primeiro Sábado Júnior", src: "/memorias/2014.jpeg" },
-  { year: null, label: "Lei das EJs aprovada", src: "/memorias/2016.jpeg" },
+  { year: null, label: "Lei das EJs aprovada", src: "/Solenidade.jpeg" },
   { year: "2016", label: "Alto Crescimento", src: "/memorias/2016.jpeg" },
   { year: "2025", label: "HEPTA Impacto", src: "/memorias/2025.jpeg" },
 ];
@@ -143,7 +143,7 @@ function Sobre() {
         <div className="grain relative overflow-hidden rounded-lg bg-primary p-10">
           <Shape kind="flower" color="var(--brand-lime)" className="pointer-events-none absolute -bottom-10 -right-6 w-56 opacity-30" />
           <p className="relative z-10 mb-4 text-xl font-bold uppercase tracking-widest text-brand-lime">
-            Memórias que construíram
+            Memórias da manada 
           </p>
           <Carousel setApi={setApi} opts={{ loop: true }} className="relative z-10">
             <CarouselContent>

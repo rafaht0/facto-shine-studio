@@ -30,7 +30,7 @@ export const Route = createFileRoute("/servicos/$slug")({
 function ServicoDetalhe() {
   const { slug } = Route.useParams();
   const service = getService(slug)!;
-  const others = services.filter((s) => s.slug !== service.slug).slice(0, 3);
+  const others = services.filter((s) => s.slug !== service.slug);
 
   const tint = (pct: number) => `color-mix(in oklab, ${service.color} ${pct}%, var(--background))`;
 
@@ -41,17 +41,17 @@ function ServicoDetalhe() {
         style={{ backgroundColor: tint(85) }}
       >
         <ElephantWalk className="forest-scene" accent={service.color} tone="var(--brand-forest)" bg={tint(85)} />
-        <div className="relative z-10 mx-auto max-w-6xl px-5 py-20">
+        <div className="relative z-10 mx-auto max-w-6xl px-5 pt-20 pb-44 md:pb-56">
           <Link
             to="/servicos"
             className="inline-flex items-center gap-2 rounded-full bg-brand-forest px-4 py-2 text-xs font-bold uppercase tracking-widest text-primary-foreground"
           >
             <ArrowLeft className="size-4" /> Todos os serviços
           </Link>
-          <div className="mt-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="mt-22 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <h1
               className={`headline max-w-3xl text-5xl md:text-7xl ${
-                service.slug === "producao-de-website" || service.slug === "arte-grafica"
+                service.slug === "producao-de-website" || service.slug === "arte-grafica" || service.slug === "gerenciamento-de-midias" 
                   ? "text-white"
                   : "text-brand-forest"
               }`}
@@ -96,15 +96,18 @@ function ServicoDetalhe() {
       </section>
 
       <section className="grain relative overflow-hidden border-y-2 border-brand-forest bg-brand-forest">
-        <ElephantWalk className="forest-scene" accent="var(--brand-lime)" tone="var(--brand-lime)" bg="var(--brand-forest)" />
-        <div className="relative z-10 mx-auto max-w-6xl px-5 py-20">
-          <h2 className="headline text-4xl text-brand-lime md:text-5xl">Como funciona</h2>
+        <ElephantWalk
+          className="forest-scene"
+          accent="color-mix(in oklab, var(--brand-forest) 40%, white)"
+          tone="color-mix(in oklab, var(--brand-forest) 55%, white)"
+          showElephant={false}
+        />
+        <div className="relative z-10 mx-auto max-w-6xl px-5 pt-20 pb-44 md:pb-56">
+          <h2 className="headline text-4xl text-primary-foreground md:text-5xl">Como funciona</h2>
           <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {service.steps.map((step, i) => (
-              <li key={step.title} className="border-t-2 pt-6" style={{ borderColor: service.color }}>
-                <span className="text-4xl font-extrabold" style={{ color: service.color }}>
-                  {String(i + 1).padStart(2, "0")}
-                </span>
+              <li key={step.title} className="border-t-2 border-brand-lime pt-6">
+                <span className="text-4xl font-extrabold text-brand-lime">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="mt-3 text-lg font-extrabold uppercase text-primary-foreground">{step.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-primary-foreground/70">{step.text}</p>
               </li>

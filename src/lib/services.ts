@@ -66,7 +66,7 @@ export const services: Service[] = [
     color: "var(--brand-gray)",
     shape: "star",
     intro:
-      "O MIV é o guia definitivo da sua marca: logo, cores, tipografia, elementos gráficos e aplicações. Um documento que garante que a marca seja aplicada do mesmo jeito por qualquer pessoa, em qualquer lugar.",
+      "",
     deliverables: [
       "Construção e malha do logotipo",
       "Versões, reduções e usos indevidos",
@@ -114,7 +114,7 @@ export const services: Service[] = [
     color: "var(--brand-amber)",
     shape: "sparkle",
     intro:
-      "Estruturamos a comunicação da sua empresa em um plano concreto, com objetivos, públicos, canais, mensagens e indicadores. Menos achismo, mais direção.",
+      "",
     deliverables: [
       "Análise de cenário e SWOT de comunicação",
       "Mapeamento de públicos e personas",
@@ -186,7 +186,7 @@ export const services: Service[] = [
     color: "var(--brand-orange)",
     shape: "star",
     intro:
-      "Planejamos, configuramos e otimizamos campanhas pagas para levar sua marca às pessoas certas. Cada real investido é acompanhado por dados e por relatórios que você entende.",
+      "",
     deliverables: [
       "Definição de objetivos e verba",
       "Estruturação de campanhas e públicos",

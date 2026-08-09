@@ -1,5 +1,5 @@
 /**
- * Cena decorativa: elefantinho caminhando por uma floresta.
+ * Cena decorativa: floresta em parallax, com elefantinho caminhando opcional.
  * Duas camadas de árvores em parallax + elefante com balanço de tromba e orelha.
  */
 export function ElephantWalk({
@@ -7,11 +7,13 @@ export function ElephantWalk({
   accent = "var(--brand-lime)",
   tone = "var(--brand-forest)",
   bg = "var(--background)",
+  showElephant = true,
 }: {
   className?: string;
   accent?: string;
   tone?: string;
   bg?: string;
+  showElephant?: boolean;
 }) {
   const earColor = `color-mix(in oklab, ${bg} 78%, black)`;
   const Tree = ({ x, s, kind }: { x: number; s: number; kind: 0 | 1 | 2 }) => (
@@ -83,36 +85,38 @@ export function ElephantWalk({
       </g>
 
       {/* elefantinho */}
-      <g className="elephant-walk" transform="translate(560 192)">
-        <g fill={tone}>
-          {/* pernas */}
-          <rect className="leg-a" x="-46" y="-34" width="18" height="34" rx="4" />
-          <rect className="leg-b" x="-20" y="-34" width="18" height="34" rx="4" />
-          <rect className="leg-b" x="10" y="-34" width="18" height="34" rx="4" />
-          <rect className="leg-a" x="34" y="-34" width="18" height="34" rx="4" />
-          {/* corpo */}
-          <ellipse cx="0" cy="-56" rx="58" ry="38" />
-          {/* rabo */}
-          <path d="M56 -70 q18 6 14 26" stroke={tone} strokeWidth="5" fill="none" strokeLinecap="round" />
-          {/* cabeça */}
-          <circle cx="-58" cy="-62" r="30" />
-          {/* orelha */}
-          <g transform="translate(8 -2) rotate(90 -49 -79)">
-            <ellipse className="ear" fill={earColor} cx="-58" cy="-85" rx="32" ry="17" />
+      {showElephant && (
+        <g className="elephant-walk" transform="translate(560 192)">
+          <g fill={tone}>
+            {/* pernas */}
+            <rect className="leg-a" x="-46" y="-34" width="18" height="34" rx="4" />
+            <rect className="leg-b" x="-20" y="-34" width="18" height="34" rx="4" />
+            <rect className="leg-b" x="10" y="-34" width="18" height="34" rx="4" />
+            <rect className="leg-a" x="34" y="-34" width="18" height="34" rx="4" />
+            {/* corpo */}
+            <ellipse cx="0" cy="-56" rx="58" ry="38" />
+            {/* rabo */}
+            <path d="M56 -70 q18 6 14 26" stroke={tone} strokeWidth="5" fill="none" strokeLinecap="round" />
+            {/* cabeça */}
+            <circle cx="-58" cy="-62" r="30" />
+            {/* orelha */}
+            <g transform="translate(8 -2) rotate(90 -49 -79)">
+              <ellipse className="ear" fill={earColor} cx="-58" cy="-85" rx="32" ry="17" />
+            </g>
+            {/* tromba */}
+            <path
+              className="trunk"
+              d="M-84 -58 q-16 12 -10 30 q4 14 18 12"
+              stroke={tone}
+              strokeWidth="12"
+              strokeLinecap="round"
+              fill="none"
+            />
           </g>
-          {/* tromba */}
-          <path
-            className="trunk"
-            d="M-84 -58 q-16 12 -10 30 q4 14 18 12"
-            stroke={tone}
-            strokeWidth="12"
-            strokeLinecap="round"
-            fill="none"
-          />
+          {/* olho */}
+          <circle cx="-66" cy="-70" r="3.5" fill="var(--background)" />
         </g>
-        {/* olho */}
-        <circle cx="-66" cy="-70" r="3.5" fill="var(--background)" />
-      </g>
+      )}
     </svg>
   );
 }
