@@ -104,20 +104,17 @@ function ServicoDetalhe() {
         />
         <div className="relative z-10 mx-auto max-w-6xl px-5 pt-20 pb-44 md:pb-56">
           <h2 className="headline text-4xl text-primary-foreground md:text-5xl">Como funciona</h2>
-          <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {service.steps.map((step, i) => {
-              const isOrphan = i === service.steps.length - 1 && service.steps.length % 4 === 1;
-              return (
-                <li
-                  key={step.title}
-                  className={`border-t-2 border-brand-lime pt-6 ${isOrphan ? "lg:col-start-2 lg:col-span-2 lg:text-center" : ""}`}
-                >
-                  <span className="text-4xl font-extrabold text-brand-lime">{String(i + 1).padStart(2, "0")}</span>
-                  <h3 className="mt-3 text-lg font-extrabold uppercase text-primary-foreground">{step.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-primary-foreground/70">{step.text}</p>
-                </li>
-              );
-            })}
+          <ol className="mt-12 flex flex-wrap justify-center gap-8">
+            {service.steps.map((step, i) => (
+              <li
+                key={step.title}
+                className="w-full border-t-2 border-brand-lime pt-6 sm:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)]"
+              >
+                <span className="text-4xl font-extrabold text-brand-lime">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="mt-3 text-lg font-extrabold uppercase text-primary-foreground">{step.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-primary-foreground/70">{step.text}</p>
+              </li>
+            ))}
           </ol>
         </div>
       </section>

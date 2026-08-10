@@ -38,13 +38,13 @@ function ServicosIndex() {
 
       <section className="relative overflow-visible">
         <div className="relative z-10 mx-auto max-w-6xl px-5 py-16">
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="grid auto-rows-[minmax(240px,1fr)] gap-5 sm:grid-cols-2">
             {services.map((s) => (
               <Link
                 key={s.slug}
                 to="/servicos/$slug"
                 params={{ slug: s.slug }}
-                className="group relative overflow-hidden rounded-lg border-2 border-brand-forest p-8 transition-transform hover:-translate-y-1"
+                className="group relative flex h-full flex-col overflow-hidden rounded-lg border-2 border-brand-forest p-8 transition-transform hover:-translate-y-1"
                 style={{ backgroundColor: `color-mix(in oklab, ${s.color} 28%, var(--background))` }}
               >
                 <Shape
@@ -56,7 +56,7 @@ function ServicosIndex() {
                   {s.name}
                 </h2>
                 <p className="relative z-10 mt-4 max-w-md text-brand-forest/75">{s.short}</p>
-                <span className="relative z-10 mt-6 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-forest">
+                <span className="relative z-10 mt-auto flex items-center gap-2 pt-6 text-xs font-bold uppercase tracking-widest text-brand-forest">
                   Ver serviço <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>
