@@ -64,6 +64,15 @@ function ServicoDetalhe() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-6xl px-5 pt-28 md:pt-22">
+        <div
+          className="mx-auto max-w-2xl rounded-lg border-2 border-brand-forest p-10 text-center"
+          style={{ backgroundColor: tint(30) }}
+        >
+          <p className="text-lg font-semibold leading-relaxed text-brand-forest">{service.highlight}</p>
+        </div>
+      </section>
+
       <section className="relative overflow-hidden">
         <div className="relative z-10 mx-auto grid max-w-6xl gap-14 px-5 py-20 md:grid-cols-2">
           <div className="rounded-lg border-2 border-brand-forest p-8" style={{ backgroundColor: tint(18) }}>

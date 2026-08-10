@@ -8,6 +8,7 @@ export type Service = {
   deliverables: string[];
   steps: { title: string; text: string }[];
   forWho: string;
+  highlight: string;
 };
 
 export const services: Service[] = [
@@ -33,6 +34,8 @@ export const services: Service[] = [
       { title: "Brandbook", text: "Consolidação de tudo em um documento com as diretrizes principais da marca." },
     ],
     forWho: "Negócios que estão começando do zero e querem construir uma marca completa, com identidade própria e autoridade digital.",
+    highlight:
+      "Construímos a base estratégica da sua marca: quem ela é, para quem fala e por que deveria ser lembrada. Do diagnóstico ao território verbal e visual, entregamos uma marca coerente em todos os pontos de contato.",
   },
   {
     slug: "gerenciamento-de-midias",
@@ -57,7 +60,9 @@ export const services: Service[] = [
       { title: "Roteiro e Cronograma", text: "Estruturação das pautas, roteiros e organização do calendário de publicações mensalmente." },
       { title: "Produção Visual", text: "Criação dos materiais visuais e conteúdos que serão utilizados nas redes sociais." },
     ],
-    forWho: "Marcas que já têm redes sociais, mas publicam sem estratégia — ou não conseguem manter constância.",
+    forWho: "Marcas que querem criar ou já têm redes sociais, mas publicam sem estratégia, não possuem tempo para manter constância, e querem agregar valor naquilo que postam.",
+    highlight:
+      "Cuidamos das redes sociais da sua marca de ponta a ponta: planejamento de conteúdo, produção de artes e legendas, publicação e leitura de métricas. Presença constante, com propósito e não por acaso.",
   },
   {
     slug: "manual-de-identidade-visual",
@@ -81,6 +86,8 @@ export const services: Service[] = [
       { title: "Produção do Manual de Identidade Visual", text: "Desenvolvimento do documento com as diretrizes de aplicação da marca, incluindo cores, tipografia, usos corretos do logotipo e orientações visuais." },
     ],
     forWho: "Marcas que querem definir toda a sua estrutura visual de maneira profissional",
+    highlight:
+      "O MIV é o guia definitivo da sua marca: logo, cores, tipografia, elementos gráficos e aplicações. Um documento que garante que a marca seja aplicada do mesmo jeito por qualquer pessoa, em qualquer lugar.",
   },
   {
     slug: "arte-grafica",
@@ -105,6 +112,8 @@ export const services: Service[] = [
       { title: "Entrega", text: "Exportação nos formatos certos e arquivos organizados para uso." },
     ],
     forWho: "Marcas que precisam de peças gráficas constantes e com qualidade, sem depender de um designer interno para cada demanda.",
+    highlight:
+      "Criamos as artes que colocam sua marca em movimento no dia a dia: do digital ao físico. Cada peça nasce alinhada à identidade visual, com hierarquia clara e acabamento profissional, sem depender de retrabalho ou improviso.",
   },
   {
     slug: "plano-de-comunicacao",
@@ -129,6 +138,8 @@ export const services: Service[] = [
       { title: "Planejamento Estratégico", text: "Estruturação e entrega do plano de comunicação" },
     ],
     forWho: "Empresas que comunicam de forma reativa e querem previsibilidade e método.",
+    highlight:
+      "Estruturamos a comunicação da sua empresa em um plano concreto, com objetivos, públicos, canais, mensagens e indicadores. Menos achismo, mais direção.",
   },
   {
     slug: "consultoria-em-comunicacao",
@@ -153,6 +164,8 @@ export const services: Service[] = [
       { title: "Acompanhamento", text: "Suporte e ajustes de conteúdo ao longo do treinamento, conforme a evolução da equipe." },
     ],
     forWho: "Equipes e profissionais que querem desenvolver habilidades em comunicação, marketing digital, peças gráficas, redação publicitária ou produção de conteúdo, com um treinamento sob medida.",
+    highlight:
+      "Analisamos como sua marca se comunica hoje e apontamos, com clareza, o que manter, o que ajustar e o que abandonar. Ideal para quem precisa de direção antes de investir.",
   },
   {
     slug: "producao-de-website",
@@ -177,6 +190,8 @@ export const services: Service[] = [
       { title: "Desenvolvimento do Site", text: "Criação do layout, estruturação das páginas e desenvolvimento técnico do site pela equipe de criação." },
     ],
     forWho: "Marcas sem site, ou com um site lento, desatualizado e que não converte.",
+    highlight:
+      "Projetamos e desenvolvemos sites institucionais e landing pages pensados para conversão: arquitetura clara, design alinhado à identidade e performance em qualquer tela.",
   },
   {
     slug: "trafego-pago",
@@ -202,6 +217,8 @@ export const services: Service[] = [
       { title: "Relatórios de Desempenho", text: "Envio de relatórios com análise de resultados e acompanhamento das campanhas ao longo do mês." },
     ],
     forWho: "Negócios que querem gerar demanda previsível e parar de depender só do alcance orgânico.",
+    highlight:
+      "Planejamos, configuramos e otimizamos campanhas pagas para levar sua marca às pessoas certas. Cada real investido é acompanhado por dados e por relatórios que você entende.",
   },
   {
     slug: "e-book",
@@ -225,6 +242,8 @@ export const services: Service[] = [
       { title: "Desenvolvimento do Layout", text: "Criação do design e diagramação do e-book, garantindo clareza, organização visual e identidade alinhada à marca." },
     ],
     forWho: "Marcas que precisam de um material estruturado para apresentar serviços, projetos ou conteúdo educativo, e sentem falta de autoridade no mercado ou geração de leads consistente.",
+    highlight:
+      "Desenvolvimento de e-book estratégico para apresentação de serviços, portfólio de projetos ou materiais institucionais, como cursos, aulas e conteúdos educativos. O material é estruturado para organizar informações, fortalecer a apresentação da marca e transmitir autoridade de forma clara e profissional.",
   },
 ];
 

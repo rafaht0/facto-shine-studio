@@ -130,13 +130,13 @@ function Sobre() {
 
           <div className="group relative aspect-square w-full max-w-md overflow-hidden rounded-2xl border-2 border-brand-forest">
             <img
-              src="/Manada%20no%20festival%20Curicaca.png"
+              src="/foto-cerimonia.jpeg"
               alt="Equipe da Facto reunida no Festival Curicaca"
               className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/85 via-brand-forest/0 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             <p className="absolute inset-x-6 bottom-6 translate-y-2 text-sm font-bold uppercase tracking-wide text-primary-foreground opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-              A manada no Festival Curicaca
+              Hepta impacto da maior manada da nação em 2025
             </p>
           </div>
         </div>
