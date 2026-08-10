@@ -137,7 +137,7 @@ export const services: Service[] = [
     color: "var(--brand-pink)",
     shape: "flower",
     intro:
-      "Após um diagnóstico e estudo aprofundado sobre as necessidades do cliente, nossa equipe prepara aulas personalizadas com duração e dias pré-combinados. As pautas dos treinamentos podem abordar desde análises de comunicação e marketing digital até peças gráficas, redação publicitária e produção de conteúdo.",
+      "",
     deliverables: [
       "Diagnóstico e estudo das necessidades do cliente",
       "Plano de aulas personalizado, com dias e duração combinados",
