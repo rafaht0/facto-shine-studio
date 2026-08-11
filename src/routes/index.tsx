@@ -89,9 +89,9 @@ function Home() {
           <FloatingIcon kind="flower" color="var(--brand-forest)" top="70%" left="5%" size="w-14" duration={7} delay={1.6} driftX={-9} driftY={-18} rotate={8} />
         </div>
 
-        <div className="pointer-events-none relative z-10 mx-auto grid max-w-6xl gap-10 px-5 py-20 md:grid-cols-[1.35fr_1fr] md:py-28">
+        <div className="pointer-events-none relative z-10 mx-auto grid max-w-6xl gap-10 px-5 py-16 md:grid-cols-[1.35fr_1fr] md:py-20">
           <div>
-            <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary">
+            <p className="mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary">
               <span className="size-2 rounded-full bg-brand-lime" />
               impacto no mercado júnior e sênior há mais de uma década
             </p>
