@@ -21,10 +21,10 @@ export const services: Service[] = [
     intro:
       "",
     deliverables: [
-      "Documento descritivo — explicação de todas as etapas da construção do Branding (.pdf)",
-      "Brandbook — documento visual com as principais informações de cada etapa (.pdf)",
-      "Manual de Identidade Visual — a identidade visual da marca e suas formas de aplicação (.pdf)",
-      "Logos, vetores e tipografias — elementos desenvolvidos para a comunicação visual da marca (.png e .eps)",
+      "Documento descritivo: uma explicação de todas as etapas da construção do Branding",
+      "Brandbook: um documento visual com as principais informações de cada etapa",
+      "Manual de Identidade Visual",
+      "Logos, vetores e tipografias: elementos desenvolvidos para a comunicação visual da marca",
     ],
     steps: [
       { title: "Diagnóstico", text: "Levantamento do momento atual da marca, do mercado e dos concorrentes para embasar as próximas etapas." },
@@ -160,7 +160,7 @@ export const services: Service[] = [
     steps: [
       { title: "Diagnóstico", text: "Estudo aprofundado das necessidades e do momento de comunicação do cliente." },
       { title: "Planejamento das Aulas", text: "Definição das pautas, duração e dias dos treinamentos, de acordo com o que foi identificado no diagnóstico." },
-      { title: "Aulas Personalizadas", text: "Realização dos treinamentos, com conteúdo sob medida — de marketing digital a redação publicitária e produção de conteúdo." },
+      { title: "Aulas Personalizadas", text: "Realização dos treinamentos, com conteúdo sob medida de marketing digital a redação publicitária e produção de conteúdo." },
       { title: "Acompanhamento", text: "Suporte e ajustes de conteúdo ao longo do treinamento, conforme a evolução da equipe." },
     ],
     forWho: "Equipes e profissionais que querem desenvolver habilidades em comunicação, marketing digital, peças gráficas, redação publicitária ou produção de conteúdo, com um treinamento sob medida.",

@@ -86,15 +86,15 @@ function Projetos() {
         >
           <div className="group pointer-events-auto relative cursor-pointer">
             <img
-              src="/elefantinho-nossos-projetos.png"
+              src="/Ativo%202@300x.png"
               alt=""
               className="block w-full origin-bottom drop-shadow-[0_18px_20px_rgba(15,45,33,0.28)] transition-all duration-500 ease-out group-hover:-translate-y-3 group-hover:scale-110 group-hover:rotate-3 group-hover:drop-shadow-[0_28px_26px_rgba(15,45,33,0.36)]"
             />
             <div
               className="elephant-shine absolute inset-0 origin-bottom transition-all duration-500 ease-out group-hover:-translate-y-3 group-hover:scale-110 group-hover:rotate-3 group-hover:opacity-100"
               style={{
-                WebkitMaskImage: "url(/elefantinho-nossos-projetos.png)",
-                maskImage: "url(/elefantinho-nossos-projetos.png)",
+                WebkitMaskImage: "url(/Ativo%202@300x.png)",
+                maskImage: "url(/Ativo%202@300x.png)",
                 WebkitMaskSize: "contain",
                 maskSize: "contain",
                 WebkitMaskRepeat: "no-repeat",

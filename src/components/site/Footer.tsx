@@ -9,8 +9,9 @@ export function Footer() {
         <div>
           <Logo tone="light" />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-primary-foreground/70">
-            Agência júnior de comunicação. Mais de uma década inovando a comunicação do mercado — porque estagnar é
-            perder oportunidade.
+            Agência júnior de comunicação. 
+            
+            Sempre inovando a comunicação do mercado
           </p>
         </div>
 
