@@ -78,10 +78,10 @@ const memorias = [
 ];
 
 const valores = [
-  { title: "bora bora", text: "Estagnar significa perder oportunidades. Buscamos novos caminhos a cada projeto.", shape: "sparkle" as const, color: "var(--brand-amber)" },
-  { title: "profissionalismo", text: "Mudar é necessário e faz parte de qualquer adaptação — evoluímos junto do mercado.", shape: "burst" as const, color: "var(--brand-magenta)" },
-  { title: "identidade de manada", text: "Uma vivência empresarial mais constante, sustentável e saudável para o time.", shape: "flower" as const, color: "var(--brand-green)" },
-  { title: "inquietação", text: "Projetos de alta qualidade entregues do começo ao fim, com método e transparência.", shape: "hex" as const, color: "var(--brand-lime)" },
+  { title: "bora bora", text: "Sinônimo de engajamento. É topar tudo e fazer acontecer, independente das adversidades. Não se deixar abalar!", shape: "sparkle" as const, color: "var(--brand-amber)" },
+  { title: "profissionalismo", text: "Sinônimo de comprometimento. É sobre eficiência e eficácia. Entender que a capacidade anda ao lado da postura.", shape: "burst" as const, color: "var(--brand-magenta)" },
+  { title: "identidade de manada", text: "É entender que juntos vamos mais longe. Fazer questão de acolher. É ajudar pensando no coletivo.", shape: "flower" as const, color: "var(--brand-green)" },
+  { title: "inquietação", text: "É ter senso de dono. Se entender como protagonista das melhorias e resolução de problemas. É sair da zona de conforto para assumir compromissos.", shape: "hex" as const, color: "var(--brand-lime)" },
 ];
 
 function Sobre() {
