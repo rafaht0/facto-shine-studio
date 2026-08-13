@@ -93,11 +93,16 @@
     border-color: var(--color-border);
   }
 
+  html {
+    overflow-x: hidden;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
   h1,
@@ -115,6 +120,8 @@
   text-transform: uppercase;
   letter-spacing: -0.03em;
   line-height: 0.95;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 @utility grain {

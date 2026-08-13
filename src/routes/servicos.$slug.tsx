@@ -50,7 +50,7 @@ function ServicoDetalhe() {
           </Link>
           <div className="mt-22 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <h1
-              className={`headline max-w-3xl text-5xl md:text-7xl ${
+              className={`headline max-w-3xl text-4xl sm:text-5xl md:text-7xl ${
                 service.slug === "producao-de-website" || service.slug === "arte-grafica" || service.slug === "gerenciamento-de-midias" 
                   ? "text-white"
                   : "text-brand-forest"

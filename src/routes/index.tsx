@@ -15,6 +15,7 @@ function FloatingIcon({
   driftX = 10,
   driftY = -18,
   rotate = 8,
+  wrapperClassName = "",
 }: {
   kind: ShapeKind;
   color: string;
@@ -26,10 +27,12 @@ function FloatingIcon({
   driftX?: number;
   driftY?: number;
   rotate?: number;
+  /** Classes extras no wrapper — usadas para esconder o ícone em telas pequenas quando ele cairia em cima do texto. */
+  wrapperClassName?: string;
 }) {
   return (
     <div
-      className="floating-shape pointer-events-auto absolute"
+      className={`floating-shape pointer-events-auto absolute ${wrapperClassName}`}
       style={
         {
           top,
@@ -74,19 +77,24 @@ function Home() {
   return (
     <div>
       <section className="relative overflow-hidden border-b border-border">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden md:block">
-          <FloatingIcon kind="hex" color="var(--brand-green)" top="4%" left="66%" size="w-40" duration={7.5} delay={0.2} driftX={12} driftY={-20} rotate={6} />
-          <FloatingIcon kind="hex" color="var(--brand-green)" top="67%" left="55%" size="w-40" duration={7.5} delay={0.2} driftX={12} driftY={-20} rotate={6} />
-          <FloatingIcon kind="dot" color="var(--brand-red)" top="1%" left="18%" size="w-14" duration={5.5} delay={0.8} driftX={-8} driftY={-14} rotate={-10} />
-          <FloatingIcon kind="sparkle" color="var(--brand-amber)" top="20%" left="88%" size="w-16" duration={6.5} delay={1.4} driftX={-10} driftY={-16} rotate={12} />
-          <FloatingIcon kind="sparkle" color="var(--brand-amber)" top="47%" left="76%" size="w-16" duration={6.5} delay={1.4} driftX={-10} driftY={-16} rotate={12} />
-          <FloatingIcon kind="burst" color="var(--brand-magenta)" top="34%" left="7%" size="w-16" duration={8} delay={0.5} driftX={10} driftY={-18} rotate={-8} />
-          <FloatingIcon kind="burst" color="var(--brand-magenta)" top="50%" left="50%" size="w-16" duration={8} delay={0.5} driftX={10} driftY={-18} rotate={-8} />
-          <FloatingIcon kind="spark" color="var(--brand-blue)" top="48%" left="62%" size="w-14" duration={5} delay={1.1} driftX={8} driftY={-20} rotate={14} />
-          <FloatingIcon kind="blob" color="var(--brand-pink)" top="62%" left="90%" size="w-20" duration={7} delay={0.3} driftX={-12} driftY={-16} rotate={-6} />
-          <FloatingIcon kind="blob" color="var(--brand-pink)" top="32%" left="67%" size="w-20" duration={7} delay={0.3} driftX={-12} driftY={-16} rotate={-6} />
-          <FloatingIcon kind="star" color="var(--brand-orange)" top="78%" left="72%" size="w-16" duration={6} delay={0.9} driftX={10} driftY={-14} rotate={10} />
-          <FloatingIcon kind="flower" color="var(--brand-forest)" top="70%" left="5%" size="w-14" duration={7} delay={1.6} driftX={-9} driftY={-18} rotate={8} />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          {/* cantos seguros: ficam visíveis em qualquer tamanho de tela, sem cair em cima do texto */}
+          <FloatingIcon kind="hex" color="var(--brand-green)" top="3%" left="70%" size="w-14 md:w-40" duration={7.5} delay={0.2} driftX={12} driftY={-20} rotate={6} />
+          <FloatingIcon kind="dot" color="var(--brand-red)" top="1%" left="14%" size="w-8 md:w-14" duration={5.5} delay={0.8} driftX={-8} driftY={-14} rotate={-10} />
+          <FloatingIcon kind="sparkle" color="var(--brand-amber)" top="14%" left="90%" size="w-8 md:w-16" duration={6.5} delay={1.4} driftX={-10} driftY={-16} rotate={12} />
+          <FloatingIcon kind="blob" color="var(--brand-pink)" top="62%" left="92%" size="w-10 md:w-20" duration={7} delay={0.3} driftX={-12} driftY={-16} rotate={-6} />
+
+          {/* aparecem a partir do tablet, quando sobra espaço ao redor do texto */}
+          <FloatingIcon wrapperClassName="hidden sm:block" kind="hex" color="var(--brand-green)" top="67%" left="55%" size="w-24 md:w-40" duration={7.5} delay={0.2} driftX={12} driftY={-20} rotate={6} />
+          <FloatingIcon wrapperClassName="hidden sm:block" kind="sparkle" color="var(--brand-amber)" top="47%" left="76%" size="w-10 md:w-16" duration={6.5} delay={1.4} driftX={-10} driftY={-16} rotate={12} />
+          <FloatingIcon wrapperClassName="hidden sm:block" kind="burst" color="var(--brand-magenta)" top="34%" left="7%" size="w-10 md:w-16" duration={8} delay={0.5} driftX={10} driftY={-18} rotate={-8} />
+          <FloatingIcon wrapperClassName="hidden sm:block" kind="spark" color="var(--brand-blue)" top="48%" left="62%" size="w-8 md:w-14" duration={5} delay={1.1} driftX={8} driftY={-20} rotate={14} />
+          <FloatingIcon wrapperClassName="hidden sm:block" kind="blob" color="var(--brand-pink)" top="32%" left="67%" size="w-12 md:w-20" duration={7} delay={0.3} driftX={-12} driftY={-16} rotate={-6} />
+          <FloatingIcon wrapperClassName="hidden sm:block" kind="star" color="var(--brand-orange)" top="78%" left="72%" size="w-10 md:w-16" duration={6} delay={0.9} driftX={10} driftY={-14} rotate={10} />
+          <FloatingIcon wrapperClassName="hidden sm:block" kind="flower" color="var(--brand-forest)" top="70%" left="5%" size="w-8 md:w-14" duration={7} delay={1.6} driftX={-9} driftY={-18} rotate={8} />
+
+          {/* só no desktop: cairia bem no meio do título em telas menores */}
+          <FloatingIcon wrapperClassName="hidden md:block" kind="burst" color="var(--brand-magenta)" top="50%" left="50%" size="w-16" duration={8} delay={0.5} driftX={10} driftY={-18} rotate={-8} />
         </div>
 
         <div className="pointer-events-none relative z-10 mx-auto grid max-w-6xl gap-10 px-5 py-16 md:grid-cols-[1.35fr_1fr] md:py-20">
@@ -95,7 +103,7 @@ function Home() {
               <span className="size-2 rounded-full bg-brand-lime" />
               impacto no mercado júnior e sênior há mais de uma década
             </p>
-            <h1 className="headline text-5xl uppercase text-brand-forest sm:text-6xl md:text-7xl">
+            <h1 className="headline text-4xl uppercase text-brand-forest sm:text-6xl md:text-7xl">
               Comunicação é com a maior
               <br />
               <span className="text-primary">manada da nação.</span>

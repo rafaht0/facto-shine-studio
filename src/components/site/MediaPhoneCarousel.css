@@ -1,0 +1,193 @@
+/* Mockup de celular 3D com carrossel — usado somente na aba de serviço
+   "Gerenciamento de Mídias". Todas as classes abaixo são específicas
+   deste componente (prefixo "media-phone") e não afetam mais nada no site. */
+
+.media-phone-scene {
+  --phone-w: 260px;
+  --phone-h: 562px;
+  --phone-rotate-y: -18deg;
+  --phone-rotate-x: 5deg;
+  --phone-rotate-z: 2deg;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 2.5rem 0;
+  perspective: 1400px;
+  overflow-x: hidden;
+}
+
+.media-phone-float {
+  animation: media-phone-floating 6s ease-in-out infinite;
+}
+
+@keyframes media-phone-floating {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.media-phone-tilt {
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(var(--phone-rotate-y)) rotateX(var(--phone-rotate-x)) rotateZ(var(--phone-rotate-z));
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.media-phone-tilt:hover {
+  transform: rotateY(calc(var(--phone-rotate-y) / 2.25)) rotateX(calc(var(--phone-rotate-x) / 2.5)) rotateZ(0deg)
+    translateY(-10px);
+}
+
+/* sombra "de chão", solta atrás do aparelho, pra dar sensação de profundidade */
+.media-phone-shadow {
+  position: absolute;
+  left: 50%;
+  bottom: -1.5rem;
+  width: 82%;
+  height: 2.5rem;
+  transform: translateX(-50%) translateZ(-60px);
+  background: radial-gradient(ellipse at center, rgba(5, 10, 8, 0.55) 0%, rgba(5, 10, 8, 0) 72%);
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+.media-phone {
+  position: relative;
+  width: var(--phone-w);
+  height: var(--phone-h);
+  border-radius: 2.75rem;
+  padding: 0.7rem;
+  background: linear-gradient(155deg, #2a2a2e 0%, #101012 55%, #050506 100%);
+  box-shadow:
+    0 55px 80px -20px rgba(15, 45, 33, 0.5),
+    0 30px 45px -15px rgba(0, 0, 0, 0.4),
+    0 10px 18px -6px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* botões laterais, só para dar acabamento realista ao aparelho */
+.media-phone::before,
+.media-phone::after {
+  content: "";
+  position: absolute;
+  right: -3px;
+  width: 3px;
+  border-radius: 2px;
+  background: #1c1c1e;
+}
+
+.media-phone::before {
+  top: 22%;
+  height: 9%;
+}
+
+.media-phone::after {
+  top: 34%;
+  height: 14%;
+}
+
+.media-phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 2.15rem;
+  background: #08110d;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.media-phone-island {
+  position: absolute;
+  top: 0.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 34%;
+  height: 1.55rem;
+  border-radius: 999px;
+  background: #000;
+  z-index: 3;
+}
+
+.media-phone-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.media-phone-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.media-phone-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.media-phone-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.85rem;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.media-phone-dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition:
+    width 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.media-phone-dot.is-active {
+  width: 1.15rem;
+  background: var(--brand-lime, #d7f24a);
+}
+
+/* tablet: mockup levemente menor */
+@media (max-width: 1024px) {
+  .media-phone-scene {
+    --phone-w: 224px;
+    --phone-h: 484px;
+  }
+}
+
+/* mobile: mockup menor, rotação 3D reduzida, sem overflow */
+@media (max-width: 640px) {
+  .media-phone-scene {
+    --phone-w: 190px;
+    --phone-h: 410px;
+    --phone-rotate-y: -10deg;
+    --phone-rotate-x: 3deg;
+    --phone-rotate-z: 1deg;
+    padding: 1.5rem 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media-phone-float {
+    animation: none;
+  }
+  .media-phone-tilt {
+    transition: none;
+  }
+}

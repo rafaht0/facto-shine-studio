@@ -67,7 +67,7 @@ function Diagnostico() {
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-5 py-20">
           <p className="text-xs font-bold uppercase tracking-widest text-primary">Diagnóstico</p>
-          <h1 className="headline mt-4 max-w-3xl text-5xl text-brand-forest md:text-6xl">
+          <h1 className="headline mt-4 max-w-3xl text-4xl text-brand-forest sm:text-5xl md:text-6xl">
             Solicite um diagnóstico da sua comunicação
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-muted-foreground">

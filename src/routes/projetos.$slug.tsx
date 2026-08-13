@@ -3,6 +3,7 @@ import { useEffect, useState, type CSSProperties } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { casos, getCaso } from "@/lib/casos";
 import { Shape, type ShapeKind } from "@/components/site/Shape";
+import { MediaPhoneCarousel } from "@/components/site/MediaPhoneCarousel";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, type CarouselApi } from "@/components/ui/carousel";
 
 /** Ordem de formas usada para variar as fotos ilustrativas de exemplo (sem foto real ainda). */
@@ -67,6 +68,7 @@ function FloatingIcon({
   driftX = 10,
   driftY = -18,
   rotate = 8,
+  wrapperClassName = "",
 }: {
   kind: ShapeKind;
   color: string;
@@ -78,10 +80,12 @@ function FloatingIcon({
   driftX?: number;
   driftY?: number;
   rotate?: number;
+  /** Classes extras no wrapper — usadas para esconder o ícone em telas pequenas quando ele cairia em cima do texto. */
+  wrapperClassName?: string;
 }) {
   return (
     <div
-      className="floating-shape pointer-events-auto absolute"
+      className={`floating-shape pointer-events-auto absolute ${wrapperClassName}`}
       style={
         {
           top,
@@ -141,12 +145,14 @@ function ProjetoDetalhe() {
   return (
     <div>
       <section className="relative overflow-hidden border-b-2 border-brand-forest" style={{ backgroundColor: tint(20) }}>
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden md:block">
-          <FloatingIcon kind={caso.shape} color={caso.color} top="10%" left="80%" size="w-28" duration={7} delay={0.2} driftX={12} driftY={-18} rotate={8} />
-          <FloatingIcon kind="sparkle" color="var(--brand-amber)" top="14%" left="92%" size="w-12" duration={6} delay={1.1} driftX={-10} driftY={-14} rotate={12} />
-          <FloatingIcon kind="dot" color="var(--brand-red)" top="60%" left="88%" size="w-10" duration={5.5} delay={0.6} driftX={-8} driftY={-14} rotate={-10} />
-          <FloatingIcon kind="burst" color="var(--brand-magenta)" top="75%" left="68%" size="w-16" duration={8} delay={0.4} driftX={10} driftY={-18} rotate={-8} />
-          <FloatingIcon kind="star" color="var(--brand-orange)" top="18%" left="58%" size="w-12" duration={6.5} delay={0.9} driftX={10} driftY={-14} rotate={10} />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <FloatingIcon kind={caso.shape} color={caso.color} top="8%" left="84%" size="w-10 md:w-28" duration={7} delay={0.2} driftX={12} driftY={-18} rotate={8} />
+          <FloatingIcon kind="sparkle" color="var(--brand-amber)" top="14%" left="94%" size="w-8 md:w-12" duration={6} delay={1.1} driftX={-10} driftY={-14} rotate={12} />
+          <FloatingIcon kind="dot" color="var(--brand-red)" top="60%" left="90%" size="w-6 md:w-10" duration={5.5} delay={0.6} driftX={-8} driftY={-14} rotate={-10} />
+
+          {/* aparecem a partir do tablet: em telas menores cairiam sobre o resumo/título */}
+          <FloatingIcon wrapperClassName="hidden sm:block" kind="burst" color="var(--brand-magenta)" top="75%" left="68%" size="w-16" duration={8} delay={0.4} driftX={10} driftY={-18} rotate={-8} />
+          <FloatingIcon wrapperClassName="hidden sm:block" kind="star" color="var(--brand-orange)" top="18%" left="58%" size="w-12" duration={6.5} delay={0.9} driftX={10} driftY={-14} rotate={10} />
         </div>
 
         <div className="relative z-10 mx-auto max-w-6xl px-5 py-20">
@@ -158,7 +164,7 @@ function ProjetoDetalhe() {
           </Link>
 
           <p className="mt-10 text-xs font-bold uppercase tracking-widest text-brand-forest">{caso.categoria}</p>
-          <h1 className="headline mt-4 max-w-3xl text-5xl text-brand-forest md:text-7xl">{caso.cliente}</h1>
+          <h1 className="headline mt-4 max-w-3xl text-4xl text-brand-forest sm:text-5xl md:text-7xl">{caso.cliente}</h1>
           <p className="mt-6 max-w-2xl text-lg font-medium leading-relaxed text-brand-forest/85">{caso.resumo}</p>
 
           <div className="mt-8 inline-flex flex-col gap-1 rounded-lg border-2 border-brand-forest bg-background/70 px-6 py-4 backdrop-blur">
@@ -169,7 +175,11 @@ function ProjetoDetalhe() {
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-20">
-        <GalleryCarousel slides={slides} alt={caso.cliente} />
+        {caso.categoria === "Gerenciamento de Mídias" ? (
+          <MediaPhoneCarousel images={gallery} alt={caso.cliente} />
+        ) : (
+          <GalleryCarousel slides={slides} alt={caso.cliente} />
+        )}
       </section>
 
       <section className="border-y border-border bg-muted/40">
