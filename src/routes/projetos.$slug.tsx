@@ -3,8 +3,8 @@ import { useEffect, useState, type CSSProperties } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { casos, getCaso } from "@/lib/casos";
 import { Shape, type ShapeKind } from "@/components/site/Shape";
-import { MediaPhoneCarousel } from "@/components/site/MediaPhoneCarousel";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, type CarouselApi } from "@/components/ui/carousel";
+import { PhoneMockup } from "@/components/PhoneMockup";
 
 /** Ordem de formas usada para variar as fotos ilustrativas de exemplo (sem foto real ainda). */
 const SHAPE_KINDS: ShapeKind[] = ["hex", "sparkle", "blob", "star", "burst", "flower", "dot", "spark"];
@@ -18,6 +18,16 @@ function placeholderSlides(startKind: ShapeKind, color: string, count = 3) {
 }
 
 type Slide = { src?: string; kind?: ShapeKind; color: string };
+
+/** Publicações do Instagram do Rolê que Rende (BB) usadas no mockup de celular com scroll automático. */
+const bbInstagramPosts = [
+  "/projetos/banco-do-brasil/post-1.jpg",
+  "/projetos/banco-do-brasil/post-2.png",
+  "/projetos/banco-do-brasil/instagram-1.jpg",
+  "/projetos/banco-do-brasil/instagram-2.jpg",
+  "/projetos/banco-do-brasil/instagram-3.jpg",
+  "/projetos/banco-do-brasil/instagram-4.jpg",
+];
 
 function GalleryCarousel({ slides, alt }: { slides: Slide[]; alt: string }) {
   const [api, setApi] = useState<CarouselApi>();
@@ -174,13 +184,27 @@ function ProjetoDetalhe() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-20">
-        {caso.categoria === "Gerenciamento de Mídias" ? (
-          <MediaPhoneCarousel images={gallery} alt={caso.cliente} />
-        ) : (
+      {caso.slug !== "banco-do-brasil" && (
+        <section className="mx-auto max-w-6xl px-5 py-20">
           <GalleryCarousel slides={slides} alt={caso.cliente} />
-        )}
-      </section>
+        </section>
+      )}
+
+      {caso.slug === "banco-do-brasil" && (
+        <section style={{ backgroundColor: tint(10) }}>
+          <div className="mx-auto grid max-w-6xl items-center gap-14 px-5 py-20 md:grid-cols-2">
+            <div>
+              <h2 className="text-xs font-bold uppercase tracking-widest text-primary">Gerenciamento de Mídias</h2>
+              <h3 className="headline mt-4 text-3xl text-brand-forest md:text-4xl">O feed em movimento</h3>
+              <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+                Da estratégia à arte final: veja como as publicações do Rolê que Rende ganham vida no feed,
+                unindo bom humor e educação financeira em cada card.
+              </p>
+            </div>
+            <PhoneMockup images={bbInstagramPosts} />
+          </div>
+        </section>
+      )}
 
       <section className="border-y border-border bg-muted/40">
         <div className="mx-auto grid max-w-6xl gap-14 px-5 py-20 md:grid-cols-2">

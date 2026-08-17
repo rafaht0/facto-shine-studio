@@ -93,7 +93,7 @@ export const services: Service[] = [
     slug: "arte-grafica",
     name: "Arte Gráfica",
     short: "Peças visuais para todos os pontos de contato da sua marca.",
-    color: "var(--brand-forest)",
+    color: "var(--brand-pink)",
     shape: "burst",
     intro:
       "",
@@ -140,32 +140,6 @@ export const services: Service[] = [
     forWho: "Empresas que comunicam de forma reativa e querem previsibilidade e método.",
     highlight:
       "Estruturamos a comunicação da sua empresa em um plano concreto, com objetivos, públicos, canais, mensagens e indicadores. Menos achismo, mais direção.",
-  },
-  {
-    slug: "consultoria-em-comunicacao",
-    name: "Consultoria em Comunicação",
-    short: "Aulas personalizadas para desenvolver a comunicação da sua equipe.",
-    color: "var(--brand-pink)",
-    shape: "flower",
-    intro:
-      "",
-    deliverables: [
-      "Diagnóstico e estudo das necessidades do cliente",
-      "Plano de aulas personalizado, com dias e duração combinados",
-      "Treinamentos em comunicação e marketing digital",
-      "Aulas de peças gráficas e redação publicitária",
-      "Conteúdo sobre produção de conteúdo",
-      "Material de apoio para a equipe",
-    ],
-    steps: [
-      { title: "Diagnóstico", text: "Estudo aprofundado das necessidades e do momento de comunicação do cliente." },
-      { title: "Planejamento das Aulas", text: "Definição das pautas, duração e dias dos treinamentos, de acordo com o que foi identificado no diagnóstico." },
-      { title: "Aulas Personalizadas", text: "Realização dos treinamentos, com conteúdo sob medida de marketing digital a redação publicitária e produção de conteúdo." },
-      { title: "Acompanhamento", text: "Suporte e ajustes de conteúdo ao longo do treinamento, conforme a evolução da equipe." },
-    ],
-    forWho: "Equipes e profissionais que querem desenvolver habilidades em comunicação, marketing digital, peças gráficas, redação publicitária ou produção de conteúdo, com um treinamento sob medida.",
-    highlight:
-      "Analisamos como sua marca se comunica hoje e apontamos, com clareza, o que manter, o que ajustar e o que abandonar. Ideal para quem precisa de direção antes de investir.",
   },
   {
     slug: "producao-de-website",

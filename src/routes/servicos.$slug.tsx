@@ -113,15 +113,19 @@ function ServicoDetalhe() {
         />
         <div className="relative z-10 mx-auto max-w-6xl px-5 pt-20 pb-44 md:pb-56">
           <h2 className="headline text-4xl text-primary-foreground md:text-5xl">Como funciona</h2>
-          <ol className="mt-12 flex flex-wrap justify-center gap-8">
+          <ol className="mt-12 flex flex-col gap-8">
             {service.steps.map((step, i) => (
               <li
                 key={step.title}
-                className="w-full border-t-2 border-brand-lime pt-6 sm:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)]"
+                className="flex flex-col gap-3 border-t-2 border-brand-lime pt-6 text-left sm:flex-row sm:items-start sm:gap-10"
               >
-                <span className="text-4xl font-extrabold text-brand-lime">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="mt-3 text-lg font-extrabold uppercase text-primary-foreground">{step.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-primary-foreground/70">{step.text}</p>
+                <span className="text-4xl font-extrabold text-brand-lime sm:w-28 sm:shrink-0 sm:text-5xl">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="sm:max-w-3xl">
+                  <h3 className="text-lg font-extrabold uppercase leading-snug text-primary-foreground sm:text-xl">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-primary-foreground/70 sm:text-base">{step.text}</p>
+                </div>
               </li>
             ))}
           </ol>
