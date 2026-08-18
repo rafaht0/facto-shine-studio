@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Shape } from "@/components/site/Shape";
 import { casos, type Caso } from "@/lib/casos";
@@ -73,10 +72,6 @@ function CaseCard({ c }: { c: Caso }) {
 }
 
 function Projetos() {
-  const categorias = useMemo(() => ["Todos", ...Array.from(new Set(casos.map((c) => c.categoria)))], []);
-  const [filtro, setFiltro] = useState("Todos");
-  const filtrados = filtro === "Todos" ? casos : casos.filter((c) => c.categoria === filtro);
-
   return (
     <div>
       <section className="relative overflow-hidden border-b border-border">
@@ -117,25 +112,8 @@ function Projetos() {
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-20">
-        <div className="mb-10 flex flex-wrap gap-2">
-          {categorias.map((cat) => (
-            <button
-              key={cat}
-              type="button"
-              onClick={() => setFiltro(cat)}
-              className={`rounded-full border-2 px-4 py-2 text-xs font-bold uppercase tracking-wide transition-colors ${
-                filtro === cat
-                  ? "border-primary bg-primary text-primary-foreground"
-                  : "border-border text-muted-foreground hover:border-primary hover:text-primary"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filtrados.map((c) => (
+          {casos.map((c) => (
             <CaseCard key={c.slug} c={c} />
           ))}
         </div>

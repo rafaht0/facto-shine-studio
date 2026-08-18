@@ -184,9 +184,19 @@ function ProjetoDetalhe() {
         </div>
       </section>
 
-      {caso.slug !== "banco-do-brasil" && (
+      {caso.slug !== "banco-do-brasil" && caso.slug !== "cliente-exemplo-c" && (
         <section className="mx-auto max-w-6xl px-5 py-20">
           <GalleryCarousel slides={slides} alt={caso.cliente} />
+        </section>
+      )}
+
+      {caso.slug === "cliente-exemplo-c" && (
+        <section className="mx-auto flex max-w-6xl justify-center px-5 py-20">
+          <img
+            src="/projetos/cliente-exemplo-c/camiseta-mockup.jpg"
+            alt="Mockup de camiseta com estampa desenvolvida pela Facto"
+            className="elephant-idle w-full max-w-2xl rounded-2xl border-2 border-brand-forest shadow-xl transition-transform duration-300 ease-out hover:scale-[1.02] hover:-rotate-1"
+          />
         </section>
       )}
 

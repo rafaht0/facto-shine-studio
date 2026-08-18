@@ -113,23 +113,6 @@ export const casos: Caso[] = [
     shape: "flower",
     color: "var(--brand-forest)",
   },
-  {
-    slug: "cliente-exemplo-d",
-    cliente: "Cliente exemplo D",
-    categoria: "Tráfego Pago",
-    resultado: "-30% custo por lead",
-    resumo: "Estruturação e otimização contínua de campanhas pagas, com leitura de dados e ajustes de verba semanais.",
-    detalhes:
-      "Case de exemplo — substitua por um projeto real. Aqui entra o contexto do desafio do cliente, o que a Facto propôs e como o processo se desenrolou do briefing à entrega final.",
-    entregaveis: [
-      "Definição de objetivos e verba",
-      "Estruturação de campanhas e públicos",
-      "Criação de anúncios e copies",
-      "Relatório de performance",
-    ],
-    shape: "star",
-    color: "var(--brand-orange)",
-  },
 ];
 
 export const getCaso = (slug: string) => casos.find((c) => c.slug === slug);

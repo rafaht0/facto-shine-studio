@@ -223,11 +223,15 @@
   opacity: 0;
 }
 
-/* Cena do elefantinho na floresta */
+/* Cena do elefantinho na floresta.
+   A altura acompanha a largura (em vez de um valor fixo) porque o SVG usa
+   preserveAspectRatio="slice": com altura fixa, telas muito largas (ou o
+   usuário dando zoom out, que aumenta a largura efetiva em CSS px) forçam
+   um recorte maior vindo do topo da cena, cortando a cabeça do elefante. */
 @utility forest-scene {
   position: absolute;
   inset: auto 0 0 0;
-  height: 190px;
+  height: clamp(190px, 10vw, 420px);
   width: 100%;
   pointer-events: none;
   z-index: 0;
