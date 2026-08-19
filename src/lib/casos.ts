@@ -21,12 +21,13 @@ export const casos: Caso[] = [
     slug: "mf-geologia",
     cliente: "MF Geologia",
     categoria: "Gerenciamento + MIV",
-    resultado: "Crescimento de x% nos seguidores no perfil e marca inconfundível no mercado",
+    resultado: "Crescimento nos seguidores no perfil e marca inconfundível no mercado",
     resumo: "Reposicionamento completo de marca, com novo território visual e tom de voz aplicados no Instagram.",
     detalhes:
       "A MF Geologia chegou até a Facto precisando de uma presença digital que refletisse a seriedade técnica da empresa sem perder a proximidade com o público. Reconstruímos a identidade visual das redes sociais, criamos uma linha editorial própria e assumimos a gestão mensal de conteúdo, sempre alinhados aos objetivos comerciais do cliente.",
     entregaveis: [
       "Manual de identidade visual aplicado às redes",
+      "Logo da marca",
       "Linha editorial e pilares de conteúdo",
       "Produção mensal de artes e legendas",
       "Calendário de publicações",
@@ -74,9 +75,9 @@ export const casos: Caso[] = [
     slug: "banco-do-brasil",
     cliente: "Banco do Brasil",
     categoria: "Gerenciamento de Mídias",
-    resultado: "+85% de engajamento",
+    resultado: "Aumento de engajamento e atividade frequente no perfil",
     resumo:
-      "Criação do zero do perfil de Instagram do Projeto Rolê que Rende, uma iniciativa do BB para jovens adultos que estão iniciando sua vida financeira.",
+      "Estabelecimento de frequência de postagens no perfil de Instagram do Projeto Rolê que Rende, uma iniciativa do BB para jovens adultos que estão iniciando sua vida financeira.",
     detalhes:
       "O Rolê que Rende nasceu como uma iniciativa do Banco do Brasil para aproximar educação financeira de jovens adultos. A Facto foi responsável por criar o perfil do zero: identidade visual, tom de voz e estratégia de conteúdo, buscando engajamento genuíno em um tema historicamente visto como distante ou complicado.",
     entregaveis: [
@@ -97,21 +98,26 @@ export const casos: Caso[] = [
     ],
   },
   {
-    slug: "cliente-exemplo-c",
-    cliente: "Cliente exemplo C",
+    slug: "advocatta",
+    cliente: "AdvocattA",
     categoria: "Arte Gráfica",
-    resultado: "+40% de conversão",
-    resumo: "Novo site institucional responsivo, com arquitetura de informação pensada para gerar leads qualificados.",
+    resultado: "Camiseta personalizada para a EJ, transmitindo a persionalidade da empresa em qualquer lugar",
+    resumo: "Desenvolvimento de arte gráfica para camiseta da AdvocattA, unindo a identidade da marca a uma composição visual marcante e contemporânea.",
     detalhes:
-      "Case de exemplo — substitua por um projeto real. Aqui entra o contexto do desafio do cliente, o que a Facto propôs e como o processo se desenrolou do briefing à entrega final.",
+      "A proposta foi criar uma camiseta com forte presença visual, equilibrando identidade institucional e linguagem criativa. A composição trabalha a aplicação da marca na parte frontal e nas mangas, enquanto as costas recebem uma estampa de maior impacto, protagonizada pela ilustração da arara-azul e por elementos gráficos que reforçam o conceito da peça. Todo o conjunto foi pensado considerando hierarquia visual, contraste, composição e aplicação sobre o tecido, garantindo unidade entre frente, costas e detalhes da camiseta.",
     entregaveis: [
-      "Arquitetura de informação e wireframes",
-      "Design de interface responsivo",
-      "Desenvolvimento e publicação",
-      "Otimização básica de SEO",
+      "Desenvolvimento do conceito visual da camiseta",
+      "Criação e composição da estampa traseira",
+      "Tratamento e aplicação da ilustração da arara-azul",
+      "Composição tipográfica da peça",
+      "Aplicação da identidade visual na parte frontal",
+      "Aplicação de elementos gráficos e marcas nas mangas",
+      "Definição da disposição dos elementos na camiseta",
+      "Mockup de apresentação da peça",
     ],
     shape: "flower",
     color: "var(--brand-forest)",
+    image: "/projetos/advocatta/camiseta-mockup.jpg",
   },
 ];
 
