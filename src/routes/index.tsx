@@ -152,50 +152,50 @@ function Home() {
 
       <section className="mx-auto max-w-6xl px-5 py-20">
         <div className="grid gap-10 md:grid-cols-[1fr_1.4fr]">
-          <h2 className="headline text-4xl text-primary md:text-5xl">Quem somos</h2>
+          <div>
+            <h2 className="headline text-4xl text-primary md:text-5xl">Quem somos</h2>
+
+            <div className="group relative mt-8 aspect-square w-full max-w-md overflow-hidden rounded-2xl border-2 border-brand-forest">
+              <img
+                src="/Manada%20no%20festival%20Curicaca.png"
+                alt="Equipe da Facto reunida no Festival Curicaca"
+                className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/85 via-brand-forest/0 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <p className="absolute inset-x-6 bottom-6 translate-y-2 text-sm font-bold uppercase tracking-wide text-primary-foreground opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                A manada no Concentra
+                <br />
+                (Encontro das Empresas Juniores do DF)
+              </p>
+            </div>
+          </div>
+
           <div className="space-y-5 text-lg leading-relaxed text-muted-foreground">
             <p>
-  A Facto é uma empresa de comunicação estratégica formada pela integração de diferentes áreas da comunicação:
-</p>
+              A Facto é uma empresa de comunicação estratégica formada pela integração de diferentes áreas da comunicação:
+            </p>
 
-<div className="bg-green-900 p-6 rounded-xl my-6">
-  <ul className="text-white font-bold space-y-2">
-    <li> . COMUNICAÇÃO ORGANIZACIONAL</li>
-    <li> . PUBLICIDADE E PROPAGANDA</li>
-    <li> . JORNALISMO</li>
-    <li> . AUDIOVISUAL</li>
-  </ul>
-</div>
+            <div className="my-6 rounded-xl bg-green-900 p-6">
+              <ul className="space-y-2 font-bold text-white">
+                <li>. COMUNICAÇÃO ORGANIZACIONAL</li>
+                <li>. PUBLICIDADE E PROPAGANDA</li>
+                <li>. JORNALISMO</li>
+                <li>. AUDIOVISUAL</li>
+              </ul>
+            </div>
 
-<p>
-  Buscamos estar em constante aprimoramento, pois entendemos que mudar é necessário e faz parte de qualquer
-  adaptação. O que nos move é alcançar uma vivência empresarial mais constante, de forma saudável e com
-  projetos de alta qualidade entregues aos nossos clientes.
-</p>
+            <p>
+              Buscamos estar em constante aprimoramento, pois entendemos que mudar é necessário e faz parte de qualquer
+              adaptação. O que nos move é alcançar uma vivência empresarial mais constante, de forma saudável e com
+              projetos de alta qualidade entregues aos nossos clientes.
+            </p>
 
-<Link
-  to="/sobre"
-  className="inline-flex items-center gap-2 font-bold text-primary hover:underline"
->
-  Conheça a Facto <ArrowRight className="size-4" />
-</Link>
-</div>
-</div>
-
-        <div className="group relative mr-auto -mt-100 aspect-square w-full max-w-md overflow-hidden rounded-2xl border-2 border-brand-forest">
-          <img
-            src="/Manada%20no%20festival%20Curicaca.png"
-            alt="Equipe da Facto reunida no Festival Curicaca"
-            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/85 via-brand-forest/0 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-          <p className="absolute inset-x-6 bottom-6 translate-y-2 text-sm font-bold uppercase tracking-wide text-primary-foreground opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-            A manada no Concentra 
-            <br />
-            (Encontro das Empresas Juniores do DF)
-          </p>
+            <Link to="/sobre" className="inline-flex items-center gap-2 font-bold text-primary hover:underline">
+              Conheça a Facto <ArrowRight className="size-4" />
+            </Link>
+          </div>
         </div>
-</section>
+      </section>
 
       <section
         className="grain relative overflow-hidden border-y border-border"

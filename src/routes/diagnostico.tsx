@@ -2,8 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { z } from "zod";
 import { Check } from "lucide-react";
+import { toast } from "sonner";
 import { services } from "@/lib/services";
 import { Shape } from "@/components/site/Shape";
+
+/**
+ * Endpoint do Formspree que recebe o formulário e encaminha para contato@factoagencia.com.br.
+ * Configurado via variável de ambiente (ver .env.example) — não é um segredo, é só o endereço
+ * público do formulário, mas assim fica fácil trocar sem mexer no código.
+ */
+const FORMSPREE_ENDPOINT = import.meta.env["VITE_FORMSPREE_ENDPOINT"] as string | undefined;
 
 export const Route = createFileRoute("/diagnostico")({
   head: () => ({
@@ -44,10 +52,14 @@ const labelClass = "mb-2 block text-xs font-bold uppercase tracking-widest text-
 function Diagnostico() {
   const [errors, setErrors] = useState<Errors>({});
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.currentTarget));
+    if (sending) return;
+
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form));
     const result = schema.safeParse(data);
     if (!result.success) {
       const next: Errors = {};
@@ -59,7 +71,48 @@ function Diagnostico() {
       return;
     }
     setErrors({});
-    setSent(true);
+
+    // honeypot: campo invisível que só um bot preencheria. Se vier preenchido,
+    // finge sucesso sem realmente enviar nada.
+    if (typeof data["_gotcha"] === "string" && data["_gotcha"].trim() !== "") {
+      form.reset();
+      setSent(true);
+      return;
+    }
+
+    if (!FORMSPREE_ENDPOINT) {
+      console.error(
+        "VITE_FORMSPREE_ENDPOINT não está configurado — defina essa variável de ambiente para habilitar o envio do formulário.",
+      );
+      toast.error("Não foi possível enviar sua solicitação. Tente novamente em alguns instantes.");
+      return;
+    }
+
+    setSending(true);
+    try {
+      const payload = new FormData(form);
+      payload.set("_subject", "Nova solicitação de diagnóstico — Facto Agência Júnior");
+      payload.set("_replyto", result.data.email);
+
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: payload,
+      });
+
+      if (!res.ok) throw new Error(`Formspree respondeu ${res.status}`);
+
+      form.reset();
+      setSent(true);
+      toast.success("Solicitação enviada com sucesso!", {
+        description: "Recebemos suas informações. Nossa equipe entrará em contato em breve.",
+      });
+    } catch (err) {
+      console.error("Falha ao enviar formulário de diagnóstico:", err);
+      toast.error("Não foi possível enviar sua solicitação. Tente novamente em alguns instantes.");
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -97,6 +150,12 @@ function Diagnostico() {
             </div>
           ) : (
             <form onSubmit={onSubmit} noValidate className="space-y-6">
+              {/* honeypot antispam — invisível para pessoas, tentador para bots que preenchem tudo */}
+              <div className="hidden" aria-hidden="true">
+                <label htmlFor="_gotcha">Deixe este campo em branco</label>
+                <input id="_gotcha" name="_gotcha" type="text" tabIndex={-1} autoComplete="off" />
+              </div>
+
               <div>
                 <label className={labelClass} htmlFor="nome">
                   Nome*
@@ -145,9 +204,10 @@ function Diagnostico() {
 
               <button
                 type="submit"
-                className="w-full rounded-full bg-primary px-8 py-4 text-sm font-bold uppercase tracking-wide text-primary-foreground transition-colors hover:bg-brand-forest sm:w-auto"
+                disabled={sending}
+                className="w-full rounded-full bg-primary px-8 py-4 text-sm font-bold uppercase tracking-wide text-primary-foreground transition-colors hover:bg-brand-forest disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-primary sm:w-auto"
               >
-                Enviar solicitação
+                {sending ? "Enviando..." : "Enviar solicitação"}
               </button>
             </form>
           )}
