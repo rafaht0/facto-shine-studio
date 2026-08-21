@@ -177,10 +177,10 @@ function Home() {
 
             <div className="my-6 rounded-xl bg-green-900 p-6">
               <ul className="space-y-2 font-bold text-white">
-                <li>. COMUNICAÇÃO ORGANIZACIONAL</li>
-                <li>. PUBLICIDADE E PROPAGANDA</li>
-                <li>. JORNALISMO</li>
                 <li>. AUDIOVISUAL</li>
+                <li>. COMUNICAÇÃO ORGANIZACIONAL</li>
+                <li>. JORNALISMO</li>
+                <li>. PUBLICIDADE E PROPAGANDA</li>
               </ul>
             </div>
 

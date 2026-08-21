@@ -1,7 +1,7 @@
+import { Instagram } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { services } from "@/lib/services";
 import { Logo } from "./Logo";
-
 export function Footer() {
   return (
     <footer className="mt-24 bg-brand-forest text-primary-foreground">
@@ -13,6 +13,19 @@ export function Footer() {
             
             Sempre inovando a comunicação do mercado
           </p>
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-primary-foreground/70">
+          Nosso Endereço: Campus Universitário Darcy Ribeiro ICC Norte Sala 636 - Asa Norte, Brasília - DF, 70910-900
+          </p>
+          <a
+    href="https://www.instagram.com/factoagencia/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Instagram da Facto"
+    className="mt-5 inline-flex items-center gap-2 text-primary-foreground/70 transition-colors hover:text-brand-lime"
+  >
+    <Instagram className="h-5 w-5" />
+    <span>Instagram</span>
+  </a>
         </div>
 
         <div>
