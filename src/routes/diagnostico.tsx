@@ -1,17 +1,46 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { z } from "zod";
+import emailjs from "@emailjs/browser";
 import { Check } from "lucide-react";
 import { toast } from "sonner";
 import { services } from "@/lib/services";
 import { Shape } from "@/components/site/Shape";
+import { checkRateLimit, registerSubmission } from "@/lib/rate-limit";
 
 /**
- * Endpoint do Formspree que recebe o formulário e encaminha para contato@factoagencia.com.br.
- * Configurado via variável de ambiente (ver .env.example) — não é um segredo, é só o endereço
- * público do formulário, mas assim fica fácil trocar sem mexer no código.
+ * Credenciais do EmailJS — todas públicas por design (é assim que o EmailJS funciona:
+ * o envio parte do navegador). O que protege o formulário é o Template ID apontar sempre
+ * para o e-mail fixo da Facto (configurado no painel do EmailJS, não aqui) e o reCAPTCHA.
+ * Ver .env.example para instruções completas de configuração.
  */
-const FORMSPREE_ENDPOINT = import.meta.env["VITE_FORMSPREE_ENDPOINT"] as string | undefined;
+const EMAILJS_SERVICE_ID = import.meta.env["VITE_EMAILJS_SERVICE_ID"] as string | undefined;
+const EMAILJS_TEMPLATE_ID = import.meta.env["VITE_EMAILJS_TEMPLATE_ID"] as string | undefined;
+const EMAILJS_PUBLIC_KEY = import.meta.env["VITE_EMAILJS_PUBLIC_KEY"] as string | undefined;
+const RECAPTCHA_SITE_KEY = import.meta.env["VITE_RECAPTCHA_SITE_KEY"] as string | undefined;
+
+declare global {
+  interface Window {
+    grecaptcha?: {
+      getResponse: (widgetId?: number) => string;
+      reset: (widgetId?: number) => void;
+    };
+  }
+}
+
+function useRecaptchaScript(enabled: boolean) {
+  useEffect(() => {
+    if (!enabled) return;
+    if (document.querySelector("script[data-recaptcha]")) return;
+
+    const script = document.createElement("script");
+    script.src = "https://www.google.com/recaptcha/api.js";
+    script.async = true;
+    script.defer = true;
+    script.dataset["recaptcha"] = "true";
+    document.head.appendChild(script);
+  }, [enabled]);
+}
 
 export const Route = createFileRoute("/diagnostico")({
   head: () => ({
@@ -45,6 +74,19 @@ const schema = z.object({
 
 type Errors = Partial<Record<keyof z.infer<typeof schema>, string>>;
 
+/** Formata progressivamente pro padrão brasileiro: (XX) XXXX-XXXX (fixo) ou (XX) XXXXX-XXXX (celular). */
+function formatTelefone(raw: string): string {
+  const digits = raw.replace(/\D/g, "").slice(0, 11);
+  if (digits.length === 0) return "";
+  if (digits.length < 3) return `(${digits}`;
+
+  const ddd = digits.slice(0, 2);
+  const rest = digits.slice(2);
+  if (rest.length <= 4) return `(${ddd}) ${rest}`;
+  if (digits.length <= 10) return `(${ddd}) ${rest.slice(0, 4)}-${rest.slice(4)}`;
+  return `(${ddd}) ${rest.slice(0, 5)}-${rest.slice(5)}`;
+}
+
 const fieldClass =
   "w-full rounded-md border border-input bg-background px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-primary";
 const labelClass = "mb-2 block text-xs font-bold uppercase tracking-widest text-brand-forest";
@@ -53,6 +95,7 @@ function Diagnostico() {
   const [errors, setErrors] = useState<Errors>({});
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
+  useRecaptchaScript(Boolean(RECAPTCHA_SITE_KEY));
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -80,9 +123,23 @@ function Diagnostico() {
       return;
     }
 
-    if (!FORMSPREE_ENDPOINT) {
+    const rate = checkRateLimit();
+    if (!rate.allowed) {
+      toast.error("Muitas tentativas de envio.", {
+        description: `Aguarde cerca de ${rate.retryInMinutes} minuto(s) antes de tentar novamente.`,
+      });
+      return;
+    }
+
+    const recaptchaToken = RECAPTCHA_SITE_KEY ? window.grecaptcha?.getResponse() : undefined;
+    if (RECAPTCHA_SITE_KEY && !recaptchaToken) {
+      toast.error("Confirme que você não é um robô antes de enviar.");
+      return;
+    }
+
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
       console.error(
-        "VITE_FORMSPREE_ENDPOINT não está configurado — defina essa variável de ambiente para habilitar o envio do formulário.",
+        "EmailJS não configurado — defina VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID e VITE_EMAILJS_PUBLIC_KEY.",
       );
       toast.error("Não foi possível enviar sua solicitação. Tente novamente em alguns instantes.");
       return;
@@ -90,18 +147,26 @@ function Diagnostico() {
 
     setSending(true);
     try {
-      const payload = new FormData(form);
-      payload.set("_subject", "Nova solicitação de diagnóstico — Facto Agência Júnior");
-      payload.set("_replyto", result.data.email);
+      const message = [
+        `Telefone: ${result.data.telefone}`,
+        `Serviço de interesse: ${result.data.servico || "Não informado"}`,
+        "",
+        result.data.mensagem || "Sem mensagem adicional.",
+      ].join("\n");
 
-      const res = await fetch(FORMSPREE_ENDPOINT, {
-        method: "POST",
-        headers: { Accept: "application/json" },
-        body: payload,
-      });
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          user_name: result.data.nome,
+          user_email: result.data.email,
+          message,
+          ...(recaptchaToken ? { "g-recaptcha-response": recaptchaToken } : {}),
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY },
+      );
 
-      if (!res.ok) throw new Error(`Formspree respondeu ${res.status}`);
-
+      registerSubmission();
       form.reset();
       setSent(true);
       toast.success("Solicitação enviada com sucesso!", {
@@ -111,6 +176,7 @@ function Diagnostico() {
       console.error("Falha ao enviar formulário de diagnóstico:", err);
       toast.error("Não foi possível enviar sua solicitação. Tente novamente em alguns instantes.");
     } finally {
+      window.grecaptcha?.reset();
       setSending(false);
     }
   }
@@ -176,7 +242,17 @@ function Diagnostico() {
                 <label className={labelClass} htmlFor="telefone">
                   Telefone com DDD*
                 </label>
-                <input id="telefone" name="telefone" inputMode="tel" maxLength={20} placeholder="(61) 99999-9999" className={fieldClass} />
+                <input
+                  id="telefone"
+                  name="telefone"
+                  inputMode="tel"
+                  maxLength={15}
+                  placeholder="(61) 99999-9999"
+                  className={fieldClass}
+                  onChange={(e) => {
+                    e.target.value = formatTelefone(e.target.value);
+                  }}
+                />
                 {errors.telefone && <p className="mt-2 text-sm text-destructive">{errors.telefone}</p>}
               </div>
 
@@ -201,6 +277,8 @@ function Diagnostico() {
                 <textarea id="mensagem" name="mensagem" rows={5} maxLength={1000} className={fieldClass} />
                 {errors.mensagem && <p className="mt-2 text-sm text-destructive">{errors.mensagem}</p>}
               </div>
+
+              {RECAPTCHA_SITE_KEY && <div className="g-recaptcha" data-sitekey={RECAPTCHA_SITE_KEY} />}
 
               <button
                 type="submit"
